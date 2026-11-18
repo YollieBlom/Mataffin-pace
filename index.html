@@ -1,0 +1,1305 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mataffin Home Run — Interactive Pace & Effort Estimator</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            lowveld: {
+              950: '#071a12',
+              900: '#0d2b1f',
+              800: '#164230',
+              700: '#1f5c43',
+              600: '#2a7a59',
+              500: '#379970',
+              100: '#e6f4ee',
+              50: '#f3faf7'
+            },
+            giraffe: {
+              600: '#d9531e',
+              500: '#ea672c',
+              400: '#f58248',
+              100: '#fdeadd'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Range Slider Styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      background: transparent;
+    }
+    input[type=range]:focus {
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      width: 100%;
+      height: 10px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #1f5c43 0%, #ea672c 50%, #f59e0b 100%);
+      border-radius: 999px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      height: 26px;
+      width: 26px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 4px solid #ea672c;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.12);
+      box-shadow: 0 4px 14px rgba(234, 103, 44, 0.5);
+    }
+    input[type=range]::-moz-range-track {
+      width: 100%;
+      height: 10px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #1f5c43 0%, #ea672c 50%, #f59e0b 100%);
+      border-radius: 999px;
+    }
+    input[type=range]::-moz-range-thumb {
+      height: 26px;
+      width: 26px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 4px solid #ea672c;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    /* Print styling for Wrist Pace Band */
+    @media print {
+      body * {
+        visibility: hidden;
+      }
+      #print-band-area, #print-band-area * {
+        visibility: visible;
+      }
+      #print-band-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        box-shadow: none !important;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-giraffe-500 selection:text-white">
+
+  <!-- Top Race Header Banner -->
+  <header class="bg-gradient-to-br from-lowveld-950 via-lowveld-900 to-lowveld-800 text-white relative overflow-hidden border-b-4 border-giraffe-500">
+    <!-- Subtle Giraffe Stadium Pillar Geometric Pattern Overlay -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: repeating-linear-gradient(65deg, transparent, transparent 25px, #ea672c 25px, #ea672c 35px);"></div>
+    
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 relative z-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-giraffe-500/20 border border-giraffe-400/40 text-giraffe-400 text-xs font-bold uppercase tracking-wider mb-2">
+            <i class="fa-solid fa-person-running"></i> Legogote Villagers Race Tool • Sat 21 Nov 2026
+          </div>
+          <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight text-white flex items-center gap-3">
+            Mataffin Home Run <span class="text-giraffe-400 font-light">|</span> Pace & Effort Calculator
+          </h1>
+          <p class="text-lowveld-100/80 text-sm sm:text-base mt-1 max-w-2xl">
+            Starts & finishes at <strong class="text-white">Mbombela Stadium</strong>, winding through <strong class="text-white">Halls Farm</strong> litchi groves down to the Crocodile River turnaround and climbing back out.
+          </p>
+        </div>
+
+        <!-- Distance Selector Pills -->
+        <div class="bg-lowveld-950/70 p-1.5 rounded-2xl border border-lowveld-700 flex items-center self-start md:self-center shadow-inner">
+          <button id="btn-dist-10k" onclick="setDistance('10k')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-giraffe-500 text-white shadow-md">
+            <i class="fa-solid fa-route"></i>
+            <span>10 km Race</span>
+            <span class="text-xs bg-black/25 px-1.5 py-0.5 rounded font-mono">06:30</span>
+          </button>
+          <button id="btn-dist-5k" onclick="setDistance('5k')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-lowveld-100 hover:text-white">
+            <i class="fa-solid fa-bolt"></i>
+            <span>5 km / 4.9 km</span>
+            <span class="text-xs bg-white/10 px-1.5 py-0.5 rounded font-mono">06:40</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Container -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6">
+
+    <!-- 5km Exact 4.9km vs 5.0km Sub-toggle (Hidden when 10k is active) -->
+    <div id="subtoggle-5k-bar" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-3.5 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm">
+      <div class="flex items-start sm:items-center gap-2.5 text-amber-950 text-xs sm:text-sm">
+        <i class="fa-solid fa-circle-info text-giraffe-600 text-base mt-0.5 sm:mt-0"></i>
+        <span><strong>Official Course Distance Note:</strong> The fun run measures <strong>4.9 km</strong> officially on race day, though some runners prefer calculating for a full <strong>5.0 km</strong> GPS watch distance.</span>
+      </div>
+      <div class="flex items-center gap-1 bg-white p-1 rounded-xl border border-amber-200 self-start sm:self-center shrink-0">
+        <button id="btn-exact-49" onclick="set5kExact(4.9)" class="px-3 py-1 rounded-lg text-xs font-bold bg-lowveld-800 text-white transition">
+          Official 4.9 km
+        </button>
+        <button id="btn-exact-50" onclick="set5kExact(5.0)" class="px-3 py-1 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition">
+          Full 5.0 km
+        </button>
+      </div>
+    </div>
+
+    <!-- Interactive Control Panel: Choose Your Own Pace or Finish Time -->
+    <section class="bg-white rounded-3xl shadow-sm border border-slate-200/90 p-5 sm:p-7">
+      <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-5 border-b border-slate-100">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-giraffe-600">Step 1 • Dial In Your Custom Rhythm</span>
+          <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 mt-0.5">Choose Your Own Pace or Target Finish Time</h2>
+          <p class="text-xs sm:text-sm text-slate-500">Adjust either your average pace or your total finish time below—both stay automatically synced.</p>
+        </div>
+
+        <!-- Strategy Mode Selector -->
+        <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+          <label class="text-xs font-bold text-slate-500 uppercase tracking-wider">Pacing Strategy:</label>
+          <div class="inline-flex bg-slate-100 p-1 rounded-xl border border-slate-200">
+            <button id="strat-effort" onclick="setStrategy('effort')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-lowveld-800 text-white shadow-sm transition" title="Adjusts pace for river downhill, orchard climb, and farm dirt tracks so heart rate stays steady">
+              <i class="fa-solid fa-heart-pulse mr-1"></i> Even Effort (Recommended)
+            </button>
+            <button id="strat-negative" onclick="setStrategy('negative')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition" title="Starts 2% more conservative on the downhill and pushes harder on the return">
+              <i class="fa-solid fa-arrow-trend-up mr-1"></i> Negative Split
+            </button>
+            <button id="strat-flat" onclick="setStrategy('flat')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition" title="Identical clock split for every single kilometer regardless of hills">
+              <i class="fa-solid fa-equals mr-1"></i> Flat Splits
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dual Synced Inputs & Master Slider -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-6 items-center">
+        
+        <!-- Target Average Pace Control Box -->
+        <div class="lg:col-span-4 bg-lowveld-50/70 border border-lowveld-600/20 rounded-2xl p-4 sm:p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-lowveld-800 flex items-center gap-1.5">
+              <i class="fa-solid fa-gauge-high text-giraffe-500"></i> Target Average Pace
+            </span>
+            <span class="text-[11px] font-semibold text-lowveld-700 bg-lowveld-100 px-2 py-0.5 rounded-md">min / km</span>
+          </div>
+
+          <div class="flex items-center justify-between gap-2 my-1">
+            <button onclick="nudgePace(-5)" class="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-giraffe-500 hover:text-giraffe-600 font-bold text-slate-700 shadow-sm active:scale-95 transition flex items-center justify-center" title="Faster by 5 sec/km">
+              -5s
+            </button>
+            <div class="flex items-center gap-1 font-mono">
+              <input id="input-pace-min" type="number" min="3" max="15" value="6" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-slate-300 rounded-xl py-1.5 text-slate-900 focus:outline-none focus:border-giraffe-500" aria-label="Pace Minutes" />
+              <span class="text-2xl font-extrabold text-slate-400">:</span>
+              <input id="input-pace-sec" type="number" min="0" max="59" value="00" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-slate-300 rounded-xl py-1.5 text-slate-900 focus:outline-none focus:border-giraffe-500" aria-label="Pace Seconds" />
+            </div>
+            <button onclick="nudgePace(5)" class="w-10 h-10 rounded-xl bg-white border border-slate-200 hover:border-giraffe-500 hover:text-giraffe-600 font-bold text-slate-700 shadow-sm active:scale-95 transition flex items-center justify-center" title="Slower by 5 sec/km">
+              +5s
+            </button>
+          </div>
+
+          <p class="text-[11px] text-slate-500 text-center mt-2">
+            Speed: <strong id="display-speed-kmh" class="text-slate-700 font-mono">10.0 km/h</strong>
+          </p>
+        </div>
+
+        <!-- Center Interactive Pace Slider -->
+        <div class="lg:col-span-4 px-2 flex flex-col justify-center">
+          <div class="flex justify-between text-xs font-bold text-slate-500 mb-2">
+            <span>Fast (<span class="font-mono">03:30/km</span>)</span>
+            <span class="text-giraffe-600">Slide to Adjust</span>
+            <span>Run/Walk (<span class="font-mono">10:00/km</span>)</span>
+          </div>
+          <input id="pace-slider" type="range" min="210" max="600" step="1" value="360" oninput="onSliderInput(this.value)" aria-label="Average Pace Slider in seconds per kilometer" />
+          <div class="flex justify-between text-[11px] font-mono text-slate-400 mt-2">
+            <span>3:30</span>
+            <span>5:00</span>
+            <span>6:30</span>
+            <span>8:00</span>
+            <span>10:00</span>
+          </div>
+          <!-- Fine Stepper Buttons -->
+          <div class="flex items-center justify-center gap-2 mt-3">
+            <button onclick="nudgePace(-1)" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+              -1 sec/km
+            </button>
+            <button onclick="nudgePace(1)" class="px-2.5 py-1 text-xs font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+              +1 sec/km
+            </button>
+          </div>
+        </div>
+
+        <!-- Target Finish Time Control Box -->
+        <div class="lg:col-span-4 bg-giraffe-100/40 border border-giraffe-500/25 rounded-2xl p-4 sm:p-5 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-giraffe-600 flex items-center gap-1.5">
+              <i class="fa-solid fa-flag-checkered"></i> Target Finish Time
+            </span>
+            <span id="badge-distance-label" class="text-[11px] font-semibold text-giraffe-600 bg-giraffe-100 px-2 py-0.5 rounded-md">10.0 km</span>
+          </div>
+
+          <div class="flex items-center justify-center gap-1 font-mono my-1">
+            <div class="flex flex-col items-center">
+              <input id="input-time-hr" type="number" min="0" max="3" value="1" onchange="onManualTimeInput()" class="w-14 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-slate-300 rounded-xl py-1.5 text-slate-900 focus:outline-none focus:border-giraffe-500" aria-label="Finish Hours" />
+              <span class="text-[10px] font-sans font-semibold text-slate-400 uppercase mt-0.5">hr</span>
+            </div>
+            <span class="text-2xl font-extrabold text-slate-400 -mt-4">:</span>
+            <div class="flex flex-col items-center">
+              <input id="input-time-min" type="number" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-slate-300 rounded-xl py-1.5 text-slate-900 focus:outline-none focus:border-giraffe-500" aria-label="Finish Minutes" />
+              <span class="text-[10px] font-sans font-semibold text-slate-400 uppercase mt-0.5">min</span>
+            </div>
+            <span class="text-2xl font-extrabold text-slate-400 -mt-4">:</span>
+            <div class="flex flex-col items-center">
+              <input id="input-time-sec" type="number" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-slate-300 rounded-xl py-1.5 text-slate-900 focus:outline-none focus:border-giraffe-500" aria-label="Finish Seconds" />
+              <span class="text-[10px] font-sans font-semibold text-slate-400 uppercase mt-0.5">sec</span>
+            </div>
+          </div>
+
+          <p class="text-[11px] text-slate-500 text-center mt-1">
+            Cross Finish Line at <strong id="display-tod-finish" class="text-slate-800 font-mono">07:30:00 AM</strong>
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Summary KPI Cards -->
+    <section class="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
+      <!-- KPI 1: Outbound 1st Half -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-400 uppercase">
+          <span>Outbound (To River)</span>
+          <i class="fa-solid fa-arrow-trend-down text-emerald-600 text-sm"></i>
+        </div>
+        <div id="kpi-first-half" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-1.5">29:37</div>
+        <p id="kpi-first-half-sub" class="text-xs text-emerald-700 font-medium mt-1">Net downhill through groves</p>
+      </div>
+
+      <!-- KPI 2: Return 2nd Half -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-400 uppercase">
+          <span>Return (To Stadium)</span>
+          <i class="fa-solid fa-arrow-trend-up text-giraffe-500 text-sm"></i>
+        </div>
+        <div id="kpi-second-half" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-1.5">30:23</div>
+        <p id="kpi-second-half-sub" class="text-xs text-giraffe-600 font-medium mt-1">+46s uphill return differential</p>
+      </div>
+
+      <!-- KPI 3: Fastest Gravity Split -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-400 uppercase">
+          <span>Fastest Split</span>
+          <i class="fa-solid fa-feather-pointed text-sky-600 text-sm"></i>
+        </div>
+        <div id="kpi-fastest-split" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-1.5">05:50 /km</div>
+        <p id="kpi-fastest-sub" class="text-xs text-slate-500 mt-1">km 4 • River valley drop (-22m)</p>
+      </div>
+
+      <!-- KPI 4: Toughest Climb Split -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 border border-slate-200/80 shadow-sm">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-400 uppercase">
+          <span>Toughest Grind</span>
+          <i class="fa-solid fa-mountain text-amber-600 text-sm"></i>
+        </div>
+        <div id="kpi-toughest-split" class="text-xl sm:text-2xl font-extrabold text-slate-900 font-mono mt-1.5">06:12 /km</div>
+        <p id="kpi-toughest-sub" class="text-xs text-slate-500 mt-1">km 7 • Mid-orchard climb (+22m)</p>
+      </div>
+    </section>
+
+    <!-- Interactive Course Elevation & Surface Profile SVG Chart -->
+    <section class="bg-white rounded-3xl shadow-sm border border-slate-200/90 p-5 sm:p-7">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-lowveld-700">Step 2 • Visual Course Profile</span>
+          <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">Elevation, Surface & Effort Map (Mbombela Stadium ↔ Halls Farm River)</h3>
+        </div>
+        <!-- Surface Legend -->
+        <div class="flex flex-wrap items-center gap-3 text-xs font-semibold">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-slate-100 text-slate-700">
+            <span class="w-2.5 h-2.5 rounded-full bg-slate-600"></span> Tarmac Road
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-amber-50 text-amber-900 border border-amber-200">
+            <span class="w-2.5 h-2.5 rounded-full bg-giraffe-500"></span> Litchi Grove Dirt Track
+          </span>
+        </div>
+      </div>
+
+      <!-- Hover/Tap Selected Segment Callout Banner -->
+      <div id="chart-active-banner" class="bg-lowveld-950 text-white rounded-2xl p-3.5 sm:px-5 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs sm:text-sm transition-all">
+        <div class="flex items-center gap-2.5">
+          <span id="banner-km-pill" class="px-2.5 py-1 rounded-lg bg-giraffe-500 text-white font-mono font-bold text-xs shrink-0">KM 4</span>
+          <span id="banner-seg-title" class="font-bold text-white">Dropping Toward the River Valley</span>
+          <span id="banner-seg-elev" class="text-lowveld-100/80 font-mono text-xs hidden md:inline">• -22m (654m → 632m)</span>
+        </div>
+        <div class="flex items-center gap-4 font-mono text-xs">
+          <span>Target Split: <strong id="banner-seg-pace" class="text-giraffe-400 text-sm">05:50/km</strong></span>
+          <span>Elapsed: <strong id="banner-seg-cum" class="text-emerald-300 text-sm">23:54</strong></span>
+          <span>RPE: <strong id="banner-seg-rpe" class="text-amber-300">7/10</strong></span>
+        </div>
+      </div>
+
+      <!-- Responsive SVG Container -->
+      <div class="relative w-full overflow-x-auto">
+        <svg id="elevation-svg" viewBox="0 0 900 250" class="w-full h-52 sm:h-64 select-none overflow-visible"></svg>
+      </div>
+      <p class="text-[11px] text-slate-400 text-center mt-2">
+        <i class="fa-regular fa-hand-pointer mr-1"></i> Tap or hover over any kilometer marker on the elevation profile to inspect split pace & coach advice.
+      </p>
+    </section>
+
+    <!-- Detailed Kilometer-by-Kilometer Split Table -->
+    <section class="bg-white rounded-3xl shadow-sm border border-slate-200/90 overflow-hidden">
+      <div class="p-5 sm:p-7 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-giraffe-600">Step 3 • Personalized Race Plan</span>
+          <h3 class="text-lg sm:text-xl font-extrabold text-slate-900">Kilometer-by-Kilometer Splits & Coaching Cues</h3>
+        </div>
+        <div class="flex flex-wrap items-center gap-2.5">
+          <button onclick="copyPlanToClipboard()" class="px-4 py-2.5 rounded-xl bg-lowveld-50 hover:bg-lowveld-100 text-lowveld-900 font-bold text-xs sm:text-sm border border-lowveld-600/20 transition flex items-center gap-2">
+            <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
+            <span id="btn-copy-text">Copy for WhatsApp</span>
+          </button>
+          <button onclick="toggleWristBandModal(true)" class="px-4 py-2.5 rounded-xl bg-giraffe-500 hover:bg-giraffe-600 text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center gap-2">
+            <i class="fa-solid fa-print"></i>
+            <span>Wrist Pace Band</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Responsive Table -->
+      <div class="overflow-x-auto">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-slate-50/80 border-b border-slate-200/80 text-[11px] font-bold uppercase tracking-wider text-slate-500">
+              <th class="py-3.5 px-4 sm:px-6">Split</th>
+              <th class="py-3.5 px-3">Segment & Surface</th>
+              <th class="py-3.5 px-3 text-center">Elevation</th>
+              <th class="py-3.5 px-3 text-center">Target Pace</th>
+              <th class="py-3.5 px-3 text-center">Elapsed Time</th>
+              <th class="py-3.5 px-3 text-center hidden md:table-cell">Time of Day</th>
+              <th class="py-3.5 px-3 text-center">Effort (RPE)</th>
+              <th class="py-3.5 px-4 sm:px-6 hidden lg:table-cell">Coach's Course Cue</th>
+            </tr>
+          </thead>
+          <tbody id="splits-table-body" class="divide-y divide-slate-100 text-sm">
+            <!-- Populated dynamically by JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Coach's Tactical Lowveld Race-Day Notes -->
+    <section class="bg-gradient-to-br from-lowveld-950 to-lowveld-900 text-white rounded-3xl p-6 sm:p-8 shadow-md border border-lowveld-800">
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-10 h-10 rounded-2xl bg-giraffe-500 flex items-center justify-center text-white font-bold text-lg shadow">
+          <i class="fa-solid fa-clipboard-check"></i>
+        </div>
+        <div>
+          <h3 class="text-lg sm:text-xl font-extrabold">Coach's Tactical Briefing: Mataffin & Halls Farm</h3>
+          <p class="text-xs text-lowveld-100/75">Key terrain & micro-climate factors to keep in mind this Saturday morning</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs sm:text-sm">
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+          <div class="font-bold text-giraffe-400 mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-tree"></i> 1. The Litchi Canopy Trap (km 3–5)
+          </div>
+          <p class="text-lowveld-100/85 leading-relaxed">
+            Dropping down into Halls Farm feels effortless in the early shade. Resist banking more than your planned downhill differential—otherwise your quads will pay interest on the km 7 orchard climb back out.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+          <div class="font-bold text-emerald-400 mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-temperature-half"></i> 2. Crocodile River Humidity (km 6–8)
+          </div>
+          <p class="text-lowveld-100/85 leading-relaxed">
+            Air sits still and humid under the litchi trees near the river turnaround. Your heart rate may drift 3–5 bpm higher on the return climb. Run by perceived breathing effort (RPE 8/10) rather than forcing a flat split.
+          </p>
+        </div>
+
+        <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+          <div class="font-bold text-amber-300 mb-1 flex items-center gap-2">
+            <i class="fa-solid fa-shoe-prints"></i> 3. Farm Dirt to Tarmac Transition
+          </div>
+          <p class="text-lowveld-100/85 leading-relaxed">
+            Compact farm dirt slightly dampens shoe energy return (~3–5 sec/km slower for the same wattage). Once you crest back onto the stadium tarmac for the final 2 km, lengthen your stride and use the firm road snap.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Printable Wrist Pace Band Modal -->
+  <div id="wristband-modal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 max-h-[90vh] flex flex-col">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-100">
+        <div>
+          <h4 class="font-extrabold text-slate-900 text-lg">Printable Wrist Pace Band</h4>
+          <p class="text-xs text-slate-500">Cut along the border and tape around your wrist or race bib</p>
+        </div>
+        <button onclick="toggleWristBandModal(false)" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="overflow-y-auto my-4 flex-1 flex justify-center">
+        <!-- Printable Strip -->
+        <div id="print-band-area" class="w-64 border-2 border-dashed border-slate-400 p-3 rounded-xl bg-white text-slate-900 font-mono text-xs">
+          <div class="text-center border-b-2 border-slate-900 pb-2 mb-2">
+            <div class="font-sans font-extrabold text-sm uppercase tracking-tight">Mataffin Home Run</div>
+            <div id="band-header-meta" class="text-[11px] font-bold text-giraffe-600">10 km • Goal 1:00:00 (06:00/km)</div>
+            <div id="band-header-strat" class="text-[10px] font-sans text-slate-500">Strategy: Even Effort</div>
+          </div>
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-slate-300 text-[10px] uppercase text-slate-500">
+                <th class="py-1">KM</th>
+                <th class="py-1 text-center">Pace</th>
+                <th class="py-1 text-right">Split Clock</th>
+              </tr>
+            </thead>
+            <tbody id="band-table-body" class="divide-y divide-slate-200 text-xs font-bold">
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+        <button onclick="toggleWristBandModal(false)" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">
+          Close
+        </button>
+        <button onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-bold bg-lowveld-800 hover:bg-lowveld-900 text-white flex items-center gap-1.5">
+          <i class="fa-solid fa-print"></i> Print Band
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden bg-lowveld-950 text-white px-4 py-3 rounded-2xl shadow-xl border border-giraffe-500 flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+    <i class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="toast-message">Race plan copied to clipboard!</span>
+  </div>
+
+  <script>
+    // =========================================================================
+    // COURSE SEGMENT DATA (Mbombela Stadium -> Halls Farm Litchi Groves -> River -> Return)
+    // =========================================================================
+    const COURSE_DATA = {
+      '10k': {
+        name: '10 km Race',
+        gunStartSeconds: 6 * 3600 + 30 * 60, // 06:30:00 AM
+        defaultPaceSec: 360, // 06:00 /km default starting point (freely adjustable)
+        segments: [
+          {
+            kmLabel: '1',
+            dist: 1.0,
+            title: 'Stadium Exit to Mataffin Tarmac',
+            surface: 'Tar',
+            surfaceType: 'tar',
+            startElev: 660,
+            endElev: 663,
+            elevDelta: '+3m',
+            effortMod: 0.005, // +0.5%
+            rpe: '6/10',
+            rpeNum: 6.0,
+            cue: "Settle into rhythm leaving the stadium precinct; don't get pulled out too fast by the 06:30 gun crowd."
+          },
+          {
+            kmLabel: '2',
+            dist: 1.0,
+            title: 'Entering Halls Farm & Upper Orchards',
+            surface: 'Tar → Dirt',
+            surfaceType: 'mixed',
+            startElev: 663,
+            endElev: 669,
+            elevDelta: '+6m',
+            effortMod: 0.018, // +1.8%
+            rpe: '6.5/10',
+            rpeNum: 6.5,
+            cue: 'Shorten stride slightly on the initial rise entering the Halls Farm gate.'
+          },
+          {
+            kmLabel: '3',
+            dist: 1.0,
+            title: 'Winding into the Litchi Groves',
+            surface: 'Compact Dirt',
+            surfaceType: 'dirt',
+            startElev: 669,
+            endElev: 654,
+            elevDelta: '-15m',
+            effortMod: -0.018, // -1.8%
+            rpe: '6.5/10',
+            rpeNum: 6.5,
+            cue: 'Shaded litchi canopy! Let gravity assist you while watching footing on farm tracks.'
+          },
+          {
+            kmLabel: '4',
+            dist: 1.0,
+            title: 'Dropping Toward the River Valley',
+            surface: 'Compact Dirt',
+            surfaceType: 'dirt',
+            startElev: 654,
+            endElev: 632,
+            elevDelta: '-22m',
+            effortMod: -0.028, // -2.8%
+            rpe: '7/10',
+            rpeNum: 7.0,
+            cue: 'Fastest downhill drop toward the river. Relax shoulders—bank rhythm, not extra effort.'
+          },
+          {
+            kmLabel: '5',
+            dist: 1.0,
+            title: 'River Bank Approach & Turnaround',
+            surface: 'Compact Dirt',
+            surfaceType: 'dirt',
+            startElev: 632,
+            endElev: 620,
+            elevDelta: '-12m',
+            effortMod: -0.012, // -1.2%
+            rpe: '7/10',
+            rpeNum: 7.0,
+            cue: 'Pass along the river, grab water, and pivot cleanly at the 5 km turnaround point.'
+          },
+          {
+            kmLabel: '6',
+            dist: 1.0,
+            title: 'Leaving River Back into Groves',
+            surface: 'Compact Dirt',
+            surfaceType: 'dirt',
+            startElev: 620,
+            endElev: 632,
+            elevDelta: '+12m',
+            effortMod: 0.015, // +1.5%
+            rpe: '7.5/10',
+            rpeNum: 7.5,
+            cue: 'The return climb begins. Hold your perceived effort steady as the watch naturally eases.'
+          },
+          {
+            kmLabel: '7',
+            dist: 1.0,
+            title: 'Mid-Orchard Grind through Litchi Trees',
+            surface: 'Compact Dirt',
+            surfaceType: 'dirt',
+            startElev: 632,
+            endElev: 654,
+            elevDelta: '+22m',
+            effortMod: 0.032, // +3.2%
+            rpe: '8/10',
+            rpeNum: 8.0,
+            cue: 'Toughest km on the course. Drive elbows back; humidity sits heavier under the trees.'
+          },
+          {
+            kmLabel: '8',
+            dist: 1.0,
+            title: 'Climbing Out of Groves Toward Overpass',
+            surface: 'Dirt → Tar',
+            surfaceType: 'mixed',
+            startElev: 654,
+            endElev: 669,
+            elevDelta: '+15m',
+            effortMod: 0.020, // +2.0%
+            rpe: '8/10',
+            rpeNum: 8.0,
+            cue: 'Crest the main orchard climb and transition back onto firmer road surfaces.'
+          },
+          {
+            kmLabel: '9',
+            dist: 1.0,
+            title: 'Stadium Approach Road',
+            surface: 'Tar',
+            surfaceType: 'tar',
+            startElev: 669,
+            endElev: 663,
+            elevDelta: '-6m',
+            effortMod: -0.008, // -0.8%
+            rpe: '8.5/10',
+            rpeNum: 8.5,
+            cue: 'Lock into the smooth tarmac and pick up your leg turnover as the stadium comes into view.'
+          },
+          {
+            kmLabel: '10',
+            dist: 1.0,
+            title: 'Final Push into Mbombela Stadium Precinct',
+            surface: 'Tar',
+            surfaceType: 'tar',
+            startElev: 663,
+            endElev: 660,
+            elevDelta: '-3m',
+            effortMod: -0.024, // -2.4%
+            rpe: '9.5/10',
+            rpeNum: 9.5,
+            cue: 'Spot the iconic orange giraffe columns and empty the tank to the finish line!'
+          }
+        ]
+      },
+      '5k': {
+        name: '5 km Fun Run',
+        gunStartSeconds: 6 * 3600 + 40 * 60, // 06:40:00 AM
+        defaultPaceSec: 360,
+        segments: [
+          {
+            kmLabel: '1',
+            dist: 1.0,
+            title: 'Stadium Exit toward Farm Gate',
+            surface: 'Tar',
+            surfaceType: 'tar',
+            startElev: 660,
+            endElev: 664,
+            elevDelta: '+4m',
+            effortMod: 0.008, // +0.8%
+            rpe: '7/10',
+            rpeNum: 7.0,
+            cue: 'Controlled start from the 06:40 gun; find clear road around the early walkers.'
+          },
+          {
+            kmLabel: '2',
+            dist: 1.0,
+            title: 'Entering Halls Farm & Litchi Orchard Edge',
+            surface: 'Compact Dirt',
+            surfaceType: 'dirt',
+            startElev: 664,
+            endElev: 648,
+            elevDelta: '-16m',
+            effortMod: -0.022, // -2.2%
+            rpe: '7.5/10',
+            rpeNum: 7.5,
+            cue: 'Open up your stride as the farm road tips downward into the trees.'
+          },
+          {
+            kmLabel: '3',
+            dist: 1.0,
+            title: 'River Valley Turnaround & Initial Climb',
+            surface: 'Compact Dirt',
+            surfaceType: 'dirt',
+            startElev: 648,
+            endElev: 646,
+            elevDelta: '-2m net',
+            effortMod: 0.005, // +0.5%
+            rpe: '8/10',
+            rpeNum: 8.0,
+            cue: 'Pivot cleanly at the turnaround cone near the river grove and lean into the incline.'
+          },
+          {
+            kmLabel: '4',
+            dist: 1.0,
+            title: 'Climbing Out of Halls Farm to Tarmac',
+            surface: 'Dirt → Tar',
+            surfaceType: 'mixed',
+            startElev: 646,
+            endElev: 664,
+            elevDelta: '+18m',
+            effortMod: 0.030, // +3.0%
+            rpe: '8.5/10',
+            rpeNum: 8.5,
+            cue: 'Hold form on the steady orchard drag back up toward the stadium road.'
+          },
+          {
+            kmLabel: '4.9',
+            dist: 0.9, // Dynamically toggled between 0.9 and 1.0
+            title: 'Final Sprint to Mbombela Stadium Finish',
+            surface: 'Tar',
+            surfaceType: 'tar',
+            startElev: 664,
+            endElev: 660,
+            elevDelta: '-4m',
+            effortMod: -0.021, // -2.1%
+            rpe: '9.5/10',
+            rpeNum: 9.5,
+            cue: 'Back on fast tarmac—kick hard all the way to the stadium finish arch!'
+          }
+        ]
+      }
+    };
+
+    // =========================================================================
+    // APPLICATION STATE
+    // =========================================================================
+    let state = {
+      raceKey: '10k',       // '10k' or '5k'
+      exact5kDist: 4.9,     // 4.9 (official) or 5.0 (watch)
+      strategy: 'effort',   // 'effort' | 'negative' | 'flat'
+      avgPaceSecPerKm: 360, // User's freely chosen average pace in seconds/km
+      activeChartIdx: 3,    // Currently highlighted segment on SVG chart
+      calculatedSplits: []  // Stores computed split objects
+    };
+
+    // =========================================================================
+    // FORMATTING HELPERS
+    // =========================================================================
+    function formatPaceMMSS(totalSeconds) {
+      const secRounded = Math.round(totalSeconds);
+      const mins = Math.floor(secRounded / 60);
+      const secs = secRounded % 60;
+      return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function formatDuration(totalSeconds) {
+      const secRounded = Math.round(totalSeconds);
+      const hrs = Math.floor(secRounded / 3600);
+      const mins = Math.floor((secRounded % 3600) / 60);
+      const secs = secRounded % 60;
+      if (hrs > 0) {
+        return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+      return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function formatTimeOfDay(secondsFromMidnight) {
+      const secRounded = Math.round(secondsFromMidnight);
+      const hrs = Math.floor(secRounded / 3600) % 24;
+      const mins = Math.floor((secRounded % 3600) / 60);
+      const secs = secRounded % 60;
+      const suffix = hrs >= 12 ? 'PM' : 'AM';
+      const displayHr = hrs % 12 === 0 ? 12 : hrs % 12;
+      return `${String(displayHr).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')} ${suffix}`;
+    }
+
+    function getTotalDistance() {
+      return state.raceKey === '10k' ? 10.0 : state.exact5kDist;
+    }
+
+    // =========================================================================
+    // STATE MUTATORS & INPUT HANDLERS
+    // =========================================================================
+    function setDistance(raceKey) {
+      state.raceKey = raceKey;
+      state.activeChartIdx = raceKey === '10k' ? 3 : 1;
+
+      const btn10 = document.getElementById('btn-dist-10k');
+      const btn5 = document.getElementById('btn-dist-5k');
+      const subBar = document.getElementById('subtoggle-5k-bar');
+
+      if (raceKey === '10k') {
+        btn10.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-giraffe-500 text-white shadow-md';
+        btn5.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-lowveld-100 hover:text-white';
+        subBar.classList.add('hidden');
+      } else {
+        btn5.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-giraffe-500 text-white shadow-md';
+        btn10.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-lowveld-100 hover:text-white';
+        subBar.classList.remove('hidden');
+      }
+
+      recalculateAndRender();
+    }
+
+    function set5kExact(distVal) {
+      state.exact5kDist = distVal;
+      const segs = COURSE_DATA['5k'].segments;
+      segs[segs.length - 1].dist = distVal === 4.9 ? 0.9 : 1.0;
+      segs[segs.length - 1].kmLabel = distVal === 4.9 ? '4.9' : '5';
+
+      const b49 = document.getElementById('btn-exact-49');
+      const b50 = document.getElementById('btn-exact-50');
+      if (distVal === 4.9) {
+        b49.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-lowveld-800 text-white transition';
+        b50.className = 'px-3 py-1 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition';
+      } else {
+        b50.className = 'px-3 py-1 rounded-lg text-xs font-bold bg-lowveld-800 text-white transition';
+        b49.className = 'px-3 py-1 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition';
+      }
+      recalculateAndRender();
+    }
+
+    function setStrategy(strat) {
+      state.strategy = strat;
+      const ids = ['effort', 'negative', 'flat'];
+      ids.forEach(id => {
+        const el = document.getElementById(`strat-${id}`);
+        if (id === strat) {
+          el.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-lowveld-800 text-white shadow-sm transition';
+        } else {
+          el.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-slate-600 hover:text-slate-900 transition';
+        }
+      });
+      recalculateAndRender();
+    }
+
+    function onSliderInput(val) {
+      state.avgPaceSecPerKm = parseFloat(val);
+      recalculateAndRender();
+    }
+
+    function nudgePace(deltaSec) {
+      state.avgPaceSecPerKm = Math.max(180, Math.min(900, Math.round(state.avgPaceSecPerKm + deltaSec)));
+      recalculateAndRender();
+    }
+
+    function onManualPaceInput() {
+      const m = parseInt(document.getElementById('input-pace-min').value, 10) || 0;
+      const s = parseInt(document.getElementById('input-pace-sec').value, 10) || 0;
+      const totalSec = Math.max(180, Math.min(900, m * 60 + s));
+      state.avgPaceSecPerKm = totalSec;
+      recalculateAndRender();
+    }
+
+    function onManualTimeInput() {
+      const hr = parseInt(document.getElementById('input-time-hr').value, 10) || 0;
+      const min = parseInt(document.getElementById('input-time-min').value, 10) || 0;
+      const sec = parseInt(document.getElementById('input-time-sec').value, 10) || 0;
+      const totalFinishSec = Math.max(900, hr * 3600 + min * 60 + sec);
+      const dist = getTotalDistance();
+      state.avgPaceSecPerKm = Math.max(180, Math.min(900, totalFinishSec / dist));
+      recalculateAndRender();
+    }
+
+    // =========================================================================
+    // CORE SPLIT CALCULATION ENGINE (Normalized to exact Finish Time)
+    // =========================================================================
+    function recalculateAndRender() {
+      const course = COURSE_DATA[state.raceKey];
+      const totalDist = getTotalDistance();
+      const targetTotalSeconds = Math.round(state.avgPaceSecPerKm * totalDist);
+
+      // Sync Input Controls
+      const paceWhole = Math.round(state.avgPaceSecPerKm);
+      document.getElementById('input-pace-min').value = Math.floor(paceWhole / 60);
+      document.getElementById('input-pace-sec').value = String(paceWhole % 60).padStart(2, '0');
+      document.getElementById('pace-slider').value = Math.min(600, Math.max(210, paceWhole));
+
+      const fHr = Math.floor(targetTotalSeconds / 3600);
+      const fMin = Math.floor((targetTotalSeconds % 3600) / 60);
+      const fSec = targetTotalSeconds % 60;
+      document.getElementById('input-time-hr').value = fHr;
+      document.getElementById('input-time-min').value = String(fMin).padStart(2, '0');
+      document.getElementById('input-time-sec').value = String(fSec).padStart(2, '0');
+
+      // Speed & Time of Day
+      const speedKmh = (3600 / state.avgPaceSecPerKm).toFixed(1);
+      document.getElementById('display-speed-kmh').textContent = `${speedKmh} km/h`;
+      document.getElementById('badge-distance-label').textContent = `${totalDist.toFixed(1)} km`;
+      document.getElementById('display-tod-finish').textContent = formatTimeOfDay(course.gunStartSeconds + targetTotalSeconds);
+
+      // Compute raw unnormalized segment durations based on chosen strategy
+      const segs = course.segments;
+      const numSegs = segs.length;
+      let rawDurations = segs.map((seg, idx) => {
+        let mod = 0;
+        if (state.strategy === 'effort') {
+          mod = seg.effortMod;
+        } else if (state.strategy === 'negative') {
+          // Combines 65% of terrain effort modifier with a progressive negative-split ramp (+1.5% early -> -1.5% late)
+          const progress = idx / (numSegs - 1); // 0 to 1
+          const negMod = 0.015 * (1 - 2 * progress);
+          mod = seg.effortMod * 0.65 + negMod;
+        } else {
+          // Flat splits
+          mod = 0;
+        }
+        const segPace = state.avgPaceSecPerKm * (1 + mod);
+        return segPace * seg.dist;
+      });
+
+      // Normalize so the sum of rounded segment durations equals targetTotalSeconds exactly
+      const rawSum = rawDurations.reduce((acc, v) => acc + v, 0);
+      const scaleFactor = targetTotalSeconds / rawSum;
+      let roundedSegSeconds = rawDurations.map(d => Math.round(d * scaleFactor));
+      const diff = targetTotalSeconds - roundedSegSeconds.reduce((a, b) => a + b, 0);
+      // Apply any 1-2 second rounding remainder to the final segment
+      roundedSegSeconds[roundedSegSeconds.length - 1] += diff;
+
+      // Build computed splits list
+      let cumSec = 0;
+      state.calculatedSplits = segs.map((seg, idx) => {
+        const segDuration = roundedSegSeconds[idx];
+        cumSec += segDuration;
+        const effectivePacePerKm = segDuration / seg.dist;
+        const paceDiffFromAvg = effectivePacePerKm - state.avgPaceSecPerKm;
+        return {
+          ...seg,
+          index: idx,
+          segDurationSec: segDuration,
+          effectivePaceSec: effectivePacePerKm,
+          paceDiffSec: paceDiffFromAvg,
+          cumulativeSec: cumSec,
+          timeOfDaySec: course.gunStartSeconds + cumSec
+        };
+      });
+
+      updateKPICards();
+      renderElevationSVG();
+      renderSplitsTable();
+      renderWristBand();
+    }
+
+    // =========================================================================
+    // UPDATE SUMMARY KPI CARDS
+    // =========================================================================
+    function updateKPICards() {
+      const splits = state.calculatedSplits;
+      if (state.raceKey === '10k') {
+        const firstHalfSec = splits.slice(0, 5).reduce((a, s) => a + s.segDurationSec, 0);
+        const secondHalfSec = splits.slice(5, 10).reduce((a, s) => a + s.segDurationSec, 0);
+        const diffSec = secondHalfSec - firstHalfSec;
+
+        document.getElementById('kpi-first-half').textContent = formatDuration(firstHalfSec);
+        document.getElementById('kpi-first-half-sub').textContent = `First 5 km (${formatPaceMMSS(firstHalfSec / 5)}/km avg)`;
+        document.getElementById('kpi-second-half').textContent = formatDuration(secondHalfSec);
+        const sign = diffSec >= 0 ? '+' : '-';
+        document.getElementById('kpi-second-half-sub').textContent = `${sign}${Math.abs(diffSec)}s vs outbound 5 km`;
+      } else {
+        // For 5k / 4.9k, compare first 2.5km outbound vs return
+        const first2 = splits[0].segDurationSec + splits[1].segDurationSec + Math.round(splits[2].segDurationSec * 0.5);
+        const total = splits[splits.length - 1].cumulativeSec;
+        const second2 = total - first2;
+        const diffSec = second2 - first2;
+
+        document.getElementById('kpi-first-half').textContent = formatDuration(first2);
+        document.getElementById('kpi-first-half-sub').textContent = 'Outbound ~2.5 km to turnaround';
+        document.getElementById('kpi-second-half').textContent = formatDuration(second2);
+        const sign = diffSec >= 0 ? '+' : '-';
+        document.getElementById('kpi-second-half-sub').textContent = `${sign}${Math.abs(diffSec)}s return climb differential`;
+      }
+
+      // Fastest & Toughest splits
+      let fastest = splits[0];
+      let toughest = splits[0];
+      splits.forEach(s => {
+        if (s.effectivePaceSec < fastest.effectivePaceSec) fastest = s;
+        if (s.effectivePaceSec > toughest.effectivePaceSec) toughest = s;
+      });
+
+      document.getElementById('kpi-fastest-split').textContent = `${formatPaceMMSS(fastest.effectivePaceSec)} /km`;
+      document.getElementById('kpi-fastest-sub').textContent = `km ${fastest.kmLabel} • ${fastest.title.split(' ').slice(0, 3).join(' ')} (${fastest.elevDelta})`;
+
+      document.getElementById('kpi-toughest-split').textContent = `${formatPaceMMSS(toughest.effectivePaceSec)} /km`;
+      document.getElementById('kpi-toughest-sub').textContent = `km ${toughest.kmLabel} • ${toughest.title.split(' ').slice(0, 3).join(' ')} (${toughest.elevDelta})`;
+    }
+
+    // =========================================================================
+    // INTERACTIVE SVG COURSE ELEVATION PROFILE
+    // =========================================================================
+    function renderElevationSVG() {
+      const svg = document.getElementById('elevation-svg');
+      const splits = state.calculatedSplits;
+      const W = 900;
+      const H = 240;
+      const padL = 48;
+      const padR = 30;
+      const padT = 28;
+      const padB = 42;
+      const plotW = W - padL - padR;
+      const plotH = H - padT - padB;
+
+      // Collect altitude points (start of km 1 + end of each segment)
+      let points = [{ km: 0, elev: splits[0].startElev, segIdx: 0 }];
+      let runningKm = 0;
+      splits.forEach((s, idx) => {
+        runningKm += s.dist;
+        points.push({
+          km: runningKm,
+          elev: s.endElev,
+          segIdx: idx,
+          split: s
+        });
+      });
+
+      const minElev = 610;
+      const maxElev = 678;
+      const totalKm = runningKm;
+
+      const getX = (km) => padL + (km / totalKm) * plotW;
+      const getY = (elev) => padT + plotH - ((elev - minElev) / (maxElev - minElev)) * plotH;
+
+      let html = `
+        <defs>
+          <linearGradient id="orchardGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ea672c" stop-opacity="0.38"/>
+            <stop offset="100%" stop-color="#1f5c43" stop-opacity="0.05"/>
+          </linearGradient>
+        </defs>
+      `;
+
+      // Horizontal altitude grid lines
+      [620, 640, 660].forEach(alt => {
+        const y = getY(alt);
+        html += `
+          <line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#e2e8f0" stroke-dasharray="4 4" stroke-width="1" />
+          <text x="${padL - 8}" y="${y + 4}" text-anchor="end" class="text-[11px] fill-slate-400 font-mono">${alt}m</text>
+        `;
+      });
+
+      // Shaded Area Under Elevation Curve
+      let areaPath = `M ${getX(0)} ${padT + plotH} `;
+      points.forEach(p => {
+        areaPath += `L ${getX(p.km)} ${getY(p.elev)} `;
+      });
+      areaPath += `L ${getX(totalKm)} ${padT + plotH} Z`;
+      html += `<path d="${areaPath}" fill="url(#orchardGrad)" />`;
+
+      // Draw Segment Lines Color-Coded by Surface (Tar = Slate, Dirt = Giraffe Orange)
+      for (let i = 0; i < splits.length; i++) {
+        const p1 = points[i];
+        const p2 = points[i + 1];
+        const s = splits[i];
+        const strokeColor = s.surfaceType === 'tar' ? '#334155' : '#ea672c';
+        html += `
+          <line x1="${getX(p1.km)}" y1="${getY(p1.elev)}" x2="${getX(p2.km)}" y2="${getY(p2.elev)}"
+                stroke="${strokeColor}" stroke-width="4" stroke-linecap="round" />
+        `;
+      }
+
+      // Turnaround River Marker Flag
+      const turnIdx = state.raceKey === '10k' ? 5 : 3;
+      const turnPt = points[turnIdx];
+      if (turnPt) {
+        const tx = getX(turnPt.km);
+        const ty = getY(turnPt.elev);
+        html += `
+          <line x1="${tx}" y1="${padT}" x2="${tx}" y2="${padT + plotH}" stroke="#0284c7" stroke-dasharray="3 3" stroke-width="1.5" />
+          <rect x="${tx - 52}" y="${padT - 6}" width="104" height="18" rx="5" fill="#0284c7" />
+          <text x="${tx}" y="${padT + 6}" text-anchor="middle" class="text-[10px] fill-white font-bold">RIVER TURNAROUND</text>
+        `;
+      }
+
+      // Interactive Nodes for each Kilometer Split
+      for (let i = 1; i < points.length; i++) {
+        const pt = points[i];
+        const s = pt.split;
+        const cx = getX(pt.km);
+        const cy = getY(pt.elev);
+        const isActive = (i - 1) === state.activeChartIdx;
+
+        // X-axis label
+        html += `
+          <text x="${cx}" y="${H - 12}" text-anchor="middle" class="text-[11px] font-mono ${isActive ? 'fill-giraffe-600 font-extrabold' : 'fill-slate-500 font-semibold'}">
+            km ${s.kmLabel}
+          </text>
+        `;
+
+        // Interactive Circle Node + Pace Pill
+        const nodeColor = s.surfaceType === 'tar' ? '#1e293b' : '#ea672c';
+        html += `
+          <g class="cursor-pointer" onmouseenter="selectChartSegment(${i - 1})" onclick="selectChartSegment(${i - 1})">
+            <circle cx="${cx}" cy="${cy}" r="18" fill="transparent" />
+            ${isActive ? `<circle cx="${cx}" cy="${cy}" r="11" fill="#ea672c" fill-opacity="0.25" />` : ''}
+            <circle cx="${cx}" cy="${cy}" r="${isActive ? '7' : '5'}" fill="${isActive ? '#ea672c' : '#ffffff'}" stroke="${nodeColor}" stroke-width="3" />
+            <text x="${cx}" y="${cy - 12}" text-anchor="middle" class="text-[10px] font-mono font-bold ${isActive ? 'fill-giraffe-600' : 'fill-slate-600'}">
+              ${formatPaceMMSS(s.effectivePaceSec)}
+            </text>
+          </g>
+        `;
+      }
+
+      svg.innerHTML = html;
+      updateActiveChartBanner();
+    }
+
+    function selectChartSegment(idx) {
+      state.activeChartIdx = idx;
+      renderElevationSVG();
+    }
+
+    function updateActiveChartBanner() {
+      const s = state.calculatedSplits[state.activeChartIdx] || state.calculatedSplits[0];
+      if (!s) return;
+      document.getElementById('banner-km-pill').textContent = `KM ${s.kmLabel}`;
+      document.getElementById('banner-seg-title').textContent = `${s.title} (${s.surface})`;
+      document.getElementById('banner-seg-elev').textContent = `• ${s.elevDelta} (${s.startElev}m → ${s.endElev}m)`;
+      document.getElementById('banner-seg-pace').textContent = `${formatPaceMMSS(s.effectivePaceSec)}/km`;
+      document.getElementById('banner-seg-cum').textContent = formatDuration(s.cumulativeSec);
+      document.getElementById('banner-seg-rpe').textContent = s.rpe;
+    }
+
+    // =========================================================================
+    // RENDER DETAILED SPLITS TABLE
+    // =========================================================================
+    function renderSplitsTable() {
+      const tbody = document.getElementById('splits-table-body');
+      const splits = state.calculatedSplits;
+
+      let rowsHtml = '';
+      splits.forEach((s, idx) => {
+        // Surface badge styling
+        let surfBadge = '';
+        if (s.surfaceType === 'tar') {
+          surfBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-slate-100 text-slate-700">Tar</span>`;
+        } else if (s.surfaceType === 'dirt') {
+          surfBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-amber-100/80 text-amber-900">Orchard Dirt</span>`;
+        } else {
+          surfBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-800">${s.surface}</span>`;
+        }
+
+        // Elevation delta badge
+        const isDown = s.elevDelta.startsWith('-');
+        const elevColor = isDown ? 'text-emerald-600 bg-emerald-50' : 'text-giraffe-600 bg-giraffe-100/50';
+        const elevIcon = isDown ? 'fa-arrow-trend-down' : 'fa-arrow-trend-up';
+
+        // Pace differential vs average
+        const diffRound = Math.round(s.paceDiffSec);
+        let diffTag = `<span class="text-[11px] text-slate-400 font-mono">even</span>`;
+        if (diffRound < 0) {
+          diffTag = `<span class="text-[11px] text-emerald-600 font-mono font-semibold">${diffRound}s</span>`;
+        } else if (diffRound > 0) {
+          diffTag = `<span class="text-[11px] text-giraffe-600 font-mono font-semibold">+${diffRound}s</span>`;
+        }
+
+        // RPE bar color
+        let rpeColor = 'bg-emerald-500';
+        if (s.rpeNum >= 8.5) rpeColor = 'bg-rose-500';
+        else if (s.rpeNum >= 7.5) rpeColor = 'bg-giraffe-500';
+        else if (s.rpeNum >= 7.0) rpeColor = 'bg-amber-500';
+
+        // Highlight halfway turnaround row
+        const isTurnaround = (state.raceKey === '10k' && idx === 4) || (state.raceKey === '5k' && idx === 2);
+        const rowBg = isTurnaround ? 'bg-sky-50/50 hover:bg-sky-50' : 'hover:bg-slate-50/90';
+
+        rowsHtml += `
+          <tr class="${rowBg} transition cursor-pointer" onclick="selectChartSegment(${idx})">
+            <td class="py-3.5 px-4 sm:px-6 font-mono font-extrabold text-slate-900 whitespace-nowrap">
+              km ${s.kmLabel}
+              ${isTurnaround ? `<span class="block text-[10px] font-sans font-bold text-sky-600 uppercase">Turnaround</span>` : ''}
+            </td>
+            <td class="py-3.5 px-3">
+              <div class="font-bold text-slate-900 text-xs sm:text-sm">${s.title}</div>
+              <div class="mt-1 flex items-center gap-2">
+                ${surfBadge}
+                <span class="text-xs text-slate-500 lg:hidden">${s.cue}</span>
+              </div>
+            </td>
+            <td class="py-3.5 px-3 text-center whitespace-nowrap">
+              <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg font-mono text-xs font-bold ${elevColor}">
+                <i class="fa-solid ${elevIcon} text-[10px]"></i> ${s.elevDelta}
+              </span>
+              <div class="text-[10px] font-mono text-slate-400 mt-0.5">${s.endElev}m</div>
+            </td>
+            <td class="py-3.5 px-3 text-center whitespace-nowrap">
+              <div class="font-mono font-extrabold text-slate-900 text-sm sm:text-base">${formatPaceMMSS(s.effectivePaceSec)}<span class="text-xs font-normal text-slate-400">/km</span></div>
+              <div>${diffTag}</div>
+            </td>
+            <td class="py-3.5 px-3 text-center whitespace-nowrap font-mono font-bold text-lowveld-800 text-sm sm:text-base">
+              ${formatDuration(s.cumulativeSec)}
+            </td>
+            <td class="py-3.5 px-3 text-center whitespace-nowrap font-mono text-xs text-slate-500 hidden md:table-cell">
+              ${formatTimeOfDay(s.timeOfDaySec)}
+            </td>
+            <td class="py-3.5 px-3 text-center whitespace-nowrap">
+              <div class="font-mono text-xs font-bold text-slate-700">${s.rpe}</div>
+              <div class="w-14 h-1.5 bg-slate-200 rounded-full mx-auto mt-1 overflow-hidden">
+                <div class="${rpeColor} h-full rounded-full" style="width: ${s.rpeNum * 10}%"></div>
+              </div>
+            </td>
+            <td class="py-3.5 px-4 sm:px-6 text-xs text-slate-600 hidden lg:table-cell max-w-xs">
+              ${s.cue}
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = rowsHtml;
+    }
+
+    // =========================================================================
+    // WRIST PACE BAND & WHATSAPP CLIPBOARD SHARE
+    // =========================================================================
+    function renderWristBand() {
+      const splits = state.calculatedSplits;
+      const totalDist = getTotalDistance();
+      const totalSec = splits[splits.length - 1].cumulativeSec;
+      const stratLabels = {
+        effort: 'Even Effort (Terrain Adjusted)',
+        negative: 'Negative Split',
+        flat: 'Flat Even Splits'
+      };
+
+      document.getElementById('band-header-meta').textContent = `${totalDist.toFixed(1)} km • Finish ${formatDuration(totalSec)} (${formatPaceMMSS(state.avgPaceSecPerKm)}/km)`;
+      document.getElementById('band-header-strat').textContent = stratLabels[state.strategy];
+
+      let html = '';
+      splits.forEach(s => {
+        html += `
+          <tr>
+            <td class="py-1">km ${s.kmLabel}</td>
+            <td class="py-1 text-center">${formatPaceMMSS(s.effectivePaceSec)}/km</td>
+            <td class="py-1 text-right">${formatDuration(s.cumulativeSec)}</td>
+          </tr>
+        `;
+      });
+      document.getElementById('band-table-body').innerHTML = html;
+    }
+
+    function toggleWristBandModal(show) {
+      const modal = document.getElementById('wristband-modal');
+      if (show) modal.classList.remove('hidden');
+      else modal.classList.add('hidden');
+    }
+
+    function copyPlanToClipboard() {
+      const splits = state.calculatedSplits;
+      const totalDist = getTotalDistance();
+      const totalSec = splits[splits.length - 1].cumulativeSec;
+
+      let lines = [
+        `🏃‍♂️ *MATAFFIN HOME RUN — PACE PLAN (${totalDist.toFixed(1)} km)*`,
+        `🎯 *Target Finish:* ${formatDuration(totalSec)} (Avg ${formatPaceMMSS(state.avgPaceSecPerKm)}/km)`,
+        `⚙️ *Strategy:* ${state.strategy === 'effort' ? 'Even Effort (Hills & Orchard Dirt Adjusted)' : state.strategy === 'negative' ? 'Negative Split' : 'Flat Splits'}`,
+        `----------------------------------------`
+      ];
+
+      splits.forEach(s => {
+        lines.push(`*km ${s.kmLabel}* | ${formatPaceMMSS(s.effectivePaceSec)}/km | ⏱️ ${formatDuration(s.cumulativeSec)} | ${s.elevDelta} (${s.surface})`);
+      });
+
+      lines.push(`----------------------------------------`);
+      lines.push(`📍 *Mbombela Stadium ↔ Halls Farm Litchi Groves*`);
+
+      const textToCopy = lines.join('\n');
+      const textarea = document.createElement('textarea');
+      textarea.value = textToCopy;
+      document.body.appendChild(textarea);
+      textarea.select();
+      try {
+        document.execCommand('copy');
+        showToast('Race plan copied! Ready to paste in WhatsApp.');
+      } catch (err) {
+        showToast('Could not copy automatically.');
+      }
+      document.body.removeChild(textarea);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast-notification');
+      document.getElementById('toast-message').textContent = msg;
+      toast.classList.remove('hidden');
+      setTimeout(() => {
+        toast.classList.add('hidden');
+      }, 3200);
+    }
+
+    // Initialize on load
+    window.onload = function () {
+      recalculateAndRender();
+    };
+  </script>
+</body>
+</html>
+```
