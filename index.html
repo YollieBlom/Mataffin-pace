@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mataffin Home Run — Pace Estimator & Race Leaderboard</title>
+  <title>Mataffin Home Run — Pace Estimator &amp; Live Leaderboard</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts -->
@@ -32,7 +32,7 @@
               800: '#991B1B',
               900: '#7F1D1D',
             },
-            charcoal: '#18181B',
+            charcoal: '#1A1A1A',
             softgray: '#F8F9FA',
           }
         }
@@ -105,12 +105,12 @@
         top: 0;
         width: 100%;
         box-shadow: none !important;
-        border: 2px dashed #18181B !important;
+        border: 2px dashed #1A1A1A !important;
       }
     }
   </style>
 </head>
-<body class="bg-[#F8F9FA] text-[#18181B] font-sans antialiased selection:bg-[#DC1E26] selection:text-white">
+<body class="bg-[#F8F9FA] text-[#1A1A1A] font-sans antialiased selection:bg-[#DC1E26] selection:text-white">
 
   <!-- Top Crimson Race Header -->
   <header class="bg-gradient-to-br from-[#B31218] via-[#DC1E26] to-[#B31218] text-white relative overflow-hidden shadow-md">
@@ -127,7 +127,7 @@
             Mataffin Home Run
           </h1>
           <p class="text-white/90 text-sm sm:text-base mt-1 max-w-2xl font-medium">
-            Pace & Effort Estimator + Live Race Leaderboard • Out-and-back through <strong class="text-white underline decoration-white/40">Halls Farm</strong> litchi groves to the Crocodile River turnaround.
+            Pace &amp; Effort Estimator + Live Race Leaderboard • Out-and-back through <strong class="text-white underline decoration-white/40">Halls Farm</strong> litchi groves to the Crocodile River turnaround.
           </p>
         </div>
 
@@ -162,19 +162,19 @@
   </header>
 
   <!-- Main Content -->
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-8">
+  <main class="max-w-6xl mx-auto px-3.5 sm:px-6 py-6 sm:py-8 space-y-8">
 
     <!-- 5km Official 4.9km vs 5.0km Watch Sub-toggle -->
     <div id="subtoggle-5k-bar" class="hidden bg-white border-l-4 border-[#DC1E26] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm border border-zinc-200">
-      <div class="flex items-start sm:items-center gap-2.5 text-[#18181B] text-xs sm:text-sm">
+      <div class="flex items-start sm:items-center gap-2.5 text-[#1A1A1A] text-xs sm:text-sm">
         <i class="fa-solid fa-circle-info text-[#DC1E26] text-base mt-0.5 sm:mt-0"></i>
         <span><strong>5 km Route Measurement:</strong> The official course measures <strong>4.9 km</strong>, or toggle to <strong>5.0 km</strong> to match a full GPS watch distance.</span>
       </div>
       <div class="flex items-center gap-1 bg-[#F8F9FA] p-1 rounded-xl border border-zinc-200 self-start sm:self-center shrink-0">
         <button id="btn-exact-49" onclick="set5kExact(4.9)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition">
-          4.9 km (Official Route)
+          4.9 km (Official)
         </button>
-        <button id="btn-exact-50" onclick="set5kExact(5.0)" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#18181B] transition">
+        <button id="btn-exact-50" onclick="set5kExact(5.0)" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition">
           5.0 km (Watch)
         </button>
       </div>
@@ -189,9 +189,9 @@
       <div class="bg-white rounded-3xl shadow-sm border border-zinc-200 p-5 sm:p-7">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-5 border-b border-zinc-100">
           <div>
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Section 1 • Pace & Effort Estimator</span>
-            <h2 class="text-xl sm:text-2xl font-black text-[#18181B] mt-0.5">Choose Your Own Pace or Finish Time</h2>
-            <p class="text-xs sm:text-sm text-zinc-500">Adjust either your average pace or target finish time—both stay synced and adjust splits for hills &amp; orchard dirt.</p>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Section 1 • Pace &amp; Effort Estimator</span>
+            <h2 class="text-xl sm:text-2xl font-black text-[#1A1A1A] mt-0.5">Choose Your Own Pace or Finish Time</h2>
+            <p class="text-xs sm:text-sm text-zinc-500">Adjust either your average pace or target finish time—both stay synced and adjust splits for elevation &amp; orchard dirt.</p>
           </div>
 
           <!-- Pacing Strategy Selector -->
@@ -201,10 +201,10 @@
               <button id="strat-effort" onclick="setStrategy('effort')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition">
                 <i class="fa-solid fa-heart-pulse mr-1"></i> Even Effort
               </button>
-              <button id="strat-negative" onclick="setStrategy('negative')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#18181B] transition">
+              <button id="strat-negative" onclick="setStrategy('negative')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition">
                 <i class="fa-solid fa-arrow-trend-up mr-1"></i> Negative Split
               </button>
-              <button id="strat-flat" onclick="setStrategy('flat')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#18181B] transition">
+              <button id="strat-flat" onclick="setStrategy('flat')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition">
                 <i class="fa-solid fa-equals mr-1"></i> Flat Splits
               </button>
             </div>
@@ -215,7 +215,7 @@
           <!-- Target Pace Input Box -->
           <div class="lg:col-span-4 bg-[#F8F9FA] border border-zinc-200 rounded-2xl p-4 sm:p-5">
             <div class="flex items-center justify-between mb-2.5">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#18181B] flex items-center gap-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#1A1A1A] flex items-center gap-1.5">
                 <i class="fa-solid fa-gauge-high text-[#DC1E26]"></i> Target Pace
               </span>
               <span class="text-[11px] font-bold text-[#B31218] bg-[#FEE2E2] px-2 py-0.5 rounded-md">min / km</span>
@@ -226,9 +226,9 @@
                 -5s
               </button>
               <div class="flex items-center gap-1 font-mono">
-                <input id="input-pace-min" type="number" min="3" max="10" value="6" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-zinc-300 rounded-xl py-1.5 text-[#18181B] focus:outline-none focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" aria-label="Pace Minutes" />
+                <input id="input-pace-min" type="number" inputmode="numeric" min="3" max="10" value="6" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-zinc-300 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" aria-label="Pace Minutes" />
                 <span class="text-2xl font-extrabold text-zinc-400">:</span>
-                <input id="input-pace-sec" type="number" min="0" max="59" value="00" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-zinc-300 rounded-xl py-1.5 text-[#18181B] focus:outline-none focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" aria-label="Pace Seconds" />
+                <input id="input-pace-sec" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-zinc-300 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" aria-label="Pace Seconds" />
               </div>
               <button onclick="nudgePace(5)" class="w-10 h-10 rounded-xl bg-white border border-zinc-200 hover:border-[#DC1E26] hover:text-[#DC1E26] font-bold text-zinc-700 shadow-sm active:scale-95 transition flex items-center justify-center" title="Slower by 5 sec/km">
                 +5s
@@ -236,7 +236,7 @@
             </div>
 
             <p class="text-[11px] text-zinc-500 text-center mt-2">
-              Avg Speed: <strong id="display-speed-kmh" class="text-[#18181B] font-mono">10.0 km/h</strong>
+              Avg Speed: <strong id="display-speed-kmh" class="text-[#1A1A1A] font-mono">10.0 km/h</strong>
             </p>
           </div>
 
@@ -276,23 +276,23 @@
 
             <div class="flex items-center justify-center gap-1 font-mono my-1">
               <div class="flex flex-col items-center">
-                <input id="input-time-hr" type="number" min="0" max="3" value="1" onchange="onManualTimeInput()" class="w-14 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#18181B] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Hours" />
+                <input id="input-time-hr" type="number" inputmode="numeric" min="0" max="3" value="1" onchange="onManualTimeInput()" class="w-14 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Hours" />
                 <span class="text-[10px] font-sans font-bold text-zinc-500 uppercase mt-0.5">hr</span>
               </div>
               <span class="text-2xl font-extrabold text-zinc-400 -mt-4">:</span>
               <div class="flex flex-col items-center">
-                <input id="input-time-min" type="number" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#18181B] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Minutes" />
+                <input id="input-time-min" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Minutes" />
                 <span class="text-[10px] font-sans font-bold text-zinc-500 uppercase mt-0.5">min</span>
               </div>
               <span class="text-2xl font-extrabold text-zinc-400 -mt-4">:</span>
               <div class="flex flex-col items-center">
-                <input id="input-time-sec" type="number" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#18181B] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Seconds" />
+                <input id="input-time-sec" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Seconds" />
                 <span class="text-[10px] font-sans font-bold text-zinc-500 uppercase mt-0.5">sec</span>
               </div>
             </div>
 
             <p class="text-[11px] text-zinc-600 text-center mt-1">
-              Finish Clock: <strong id="display-tod-finish" class="text-[#18181B] font-mono">07:30:00 AM</strong>
+              Finish Clock: <strong id="display-tod-finish" class="text-[#1A1A1A] font-mono">07:30:00 AM</strong>
             </p>
           </div>
         </div>
@@ -303,23 +303,23 @@
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
           <div>
             <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Course Elevation &amp; Surface Profile</span>
-            <h3 class="text-lg sm:text-xl font-black text-[#18181B]">Mbombela Stadium (~660 m) ↔ Crocodile River (~620 m)</h3>
+            <h3 class="text-lg sm:text-xl font-black text-[#1A1A1A]">Mbombela Stadium (~660 m) ↔ Crocodile River (~620 m)</h3>
           </div>
           <div class="flex flex-wrap items-center gap-2.5 text-xs font-bold">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-100 text-[#18181B]">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#18181B]"></span> Tarmac Road
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-100 text-[#1A1A1A]">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#1A1A1A]"></span> Tarmac Road
             </span>
             <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FEF2F2] text-[#B31218] border border-[#FECACA]">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#DC1E26]"></span> Orchard Dirt (+3–5s/km effort)
+              <span class="w-2.5 h-2.5 rounded-full bg-[#DC1E26]"></span> Compact Dirt (+3–5s/km effort)
             </span>
           </div>
         </div>
 
         <!-- Active Segment Inspection Banner -->
-        <div class="bg-[#18181B] text-white rounded-2xl p-3.5 sm:px-5 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs sm:text-sm">
+        <div class="bg-[#1A1A1A] text-white rounded-2xl p-3.5 sm:px-5 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs sm:text-sm">
           <div class="flex items-center gap-2.5">
             <span id="banner-km-pill" class="px-2.5 py-1 rounded-lg bg-[#DC1E26] text-white font-mono font-bold text-xs shrink-0">KM 4</span>
-            <span id="banner-seg-title" class="font-bold text-white">Dropping Toward the River Valley</span>
+            <span id="banner-seg-title" class="font-bold text-white">Dropping Toward Crocodile River</span>
             <span id="banner-seg-elev" class="text-zinc-300 font-mono text-xs hidden md:inline">• -22m (654m → 632m)</span>
           </div>
           <div class="flex items-center gap-4 font-mono text-xs">
@@ -342,10 +342,10 @@
         <div class="p-5 sm:p-7 border-b border-zinc-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Kilometer-by-Kilometer Breakdown</span>
-            <h3 class="text-lg sm:text-xl font-black text-[#18181B]">Your Personalized Race Splits</h3>
+            <h3 class="text-lg sm:text-xl font-black text-[#1A1A1A]">Your Personalized Race Splits</h3>
           </div>
           <div class="flex flex-wrap items-center gap-2.5">
-            <button onclick="copyPlanToClipboard()" class="px-4 py-2.5 rounded-xl bg-[#F8F9FA] hover:bg-zinc-100 text-[#18181B] font-bold text-xs sm:text-sm border border-zinc-200 transition flex items-center gap-2">
+            <button onclick="copyPlanToClipboard()" class="px-4 py-2.5 rounded-xl bg-[#F8F9FA] hover:bg-zinc-100 text-[#1A1A1A] font-bold text-xs sm:text-sm border border-zinc-200 transition flex items-center gap-2">
               <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
               <span>Copy Splits for WhatsApp</span>
             </button>
@@ -361,10 +361,10 @@
             <thead>
               <tr class="bg-[#F8F9FA] border-b border-zinc-200 text-[11px] font-extrabold uppercase tracking-wider text-zinc-500">
                 <th class="py-3.5 px-4 sm:px-6">km</th>
-                <th class="py-3.5 px-3">Terrain &amp; Surface</th>
-                <th class="py-3.5 px-3 text-center">Effort (RPE)</th>
-                <th class="py-3.5 px-3 text-center">Target Split</th>
-                <th class="py-3.5 px-3 text-center">Cumulative Time</th>
+                <th class="py-3.5 px-3">Segment &amp; Surface</th>
+                <th class="py-3.5 px-3 text-center">RPE</th>
+                <th class="py-3.5 px-3 text-center">Split Pace</th>
+                <th class="py-3.5 px-3 text-center">Cumulative</th>
                 <th class="py-3.5 px-4 sm:px-6 hidden lg:table-cell">Coaching Cue</th>
               </tr>
             </thead>
@@ -385,11 +385,11 @@
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
         <div>
           <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Section 2 • Commit to Your Target</span>
-          <h2 class="text-xl sm:text-2xl font-black text-[#18181B] mt-0.5">Lock In Your Race Goal &amp; Join the Leaderboard</h2>
-          <p class="text-xs sm:text-sm text-zinc-500">Save your target time now, then come back Saturday afternoon to log your actual finish time and compare!</p>
+          <h2 class="text-xl sm:text-2xl font-black text-[#1A1A1A] mt-0.5">Lock In Your Goal &amp; Join the Leaderboard</h2>
+          <p class="text-xs sm:text-sm text-zinc-500">Save your target time now, then log your actual finish time Saturday afternoon to see where you rank!</p>
         </div>
         <button type="button" onclick="autoFillGoalFromCalculator()" class="self-start md:self-center px-3.5 py-2 rounded-xl bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#B31218] border border-[#FECACA] text-xs font-bold transition flex items-center gap-1.5 shrink-0">
-          <i class="fa-solid fa-wand-magic-sparkles"></i> Auto-Fill from Calculator Above
+          <i class="fa-solid fa-wand-magic-sparkles"></i> Sync from Calculator Above
         </button>
       </div>
 
@@ -397,16 +397,15 @@
         <!-- Runner Name -->
         <div class="md:col-span-4">
           <label for="goal-name" class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">Runner Name</label>
-          <input id="goal-name" type="text" required maxlength="40" placeholder="e.g. Sarah M." class="w-full px-4 py-3 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-sm font-semibold text-[#18181B] focus:outline-none focus:bg-white focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" />
+          <input id="goal-name" type="text" required maxlength="40" placeholder="e.g. Sarah M." class="w-full px-4 py-3 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-sm font-semibold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" />
         </div>
 
         <!-- Distance -->
         <div class="md:col-span-3">
           <label for="goal-distance" class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">Distance</label>
-          <select id="goal-distance" class="w-full px-4 py-3 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-sm font-semibold text-[#18181B] focus:outline-none focus:bg-white focus:border-[#DC1E26]">
+          <select id="goal-distance" class="w-full px-4 py-3 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-sm font-semibold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]">
             <option value="10 km">10 km (06:30 Start)</option>
             <option value="4.9 km">4.9 km (Official 5 km)</option>
-            <option value="5 km">5 km (Watch Distance)</option>
           </select>
         </div>
 
@@ -414,18 +413,18 @@
         <div class="md:col-span-3">
           <label class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">Goal Time (HH:MM:SS)</label>
           <div class="flex items-center gap-1 font-mono">
-            <input id="goal-hr" type="number" min="0" max="3" value="1" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#18181B] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Hours" />
+            <input id="goal-hr" type="number" inputmode="numeric" min="0" max="3" value="1" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Hours" />
             <span class="font-bold text-zinc-400">:</span>
-            <input id="goal-min" type="number" min="0" max="59" value="00" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#18181B] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Minutes" />
+            <input id="goal-min" type="number" inputmode="numeric" min="0" max="59" value="00" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Minutes" />
             <span class="font-bold text-zinc-400">:</span>
-            <input id="goal-sec" type="number" min="0" max="59" value="00" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#18181B] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Seconds" />
+            <input id="goal-sec" type="number" inputmode="numeric" min="0" max="59" value="00" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Seconds" />
           </div>
         </div>
 
         <!-- Submit Button -->
         <div class="md:col-span-2">
-          <button id="btn-submit-goal" type="submit" class="w-full py-3 px-4 rounded-xl bg-[#DC1E26] hover:bg-[#B31218] text-white font-extrabold text-sm shadow-md active:scale-[0.98] transition flex items-center justify-center gap-2">
-            <i class="fa-solid fa-check-circle"></i> Save My Goal
+          <button id="btn-submit-goal" type="submit" class="w-full py-3 px-4 rounded-xl bg-[#DC1E26] hover:bg-[#B31218] text-white font-extrabold text-sm shadow-md active:scale-[0.98] transition flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus-circle"></i> Add My Goal
           </button>
         </div>
       </form>
@@ -437,9 +436,9 @@
             <i class="fa-solid fa-fire"></i>
           </div>
           <div>
-            <h4 class="font-black text-[#18181B] text-base">Goal Locked In! You're on the Leaderboard.</h4>
+            <h4 class="font-black text-[#1A1A1A] text-base">Goal Locked In! You're on the Leaderboard.</h4>
             <p id="goal-confirm-summary" class="text-xs sm:text-sm text-zinc-700 mt-0.5">
-              Don't forget to log your actual finish time after the race on Saturday!
+              Set a quick 1-tap reminder below to log your actual finish time Saturday at 13:00!
             </p>
           </div>
         </div>
@@ -448,7 +447,7 @@
           <button type="button" onclick="downloadSaturdayReminderICS()" class="px-4 py-2.5 rounded-xl bg-[#DC1E26] hover:bg-[#B31218] text-white font-extrabold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
             <span>📅 Remind Me Saturday at 13:00</span>
           </button>
-          <a id="gcal-reminder-link" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-white hover:bg-zinc-50 text-[#18181B] border border-zinc-300 font-bold text-xs sm:text-sm transition flex items-center gap-2">
+          <a id="gcal-reminder-link" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-white hover:bg-zinc-50 text-[#1A1A1A] border border-zinc-300 font-bold text-xs sm:text-sm transition flex items-center gap-2">
             <i class="fa-brands fa-google text-[#DC1E26]"></i> Add to Google Calendar
           </a>
         </div>
@@ -456,65 +455,80 @@
     </section>
 
     <!-- ===================================================================== -->
-    <!-- SECTION 3: LIVE RACE LEADERBOARD (GOAL VS. ACTUAL)                    -->
+    <!-- SECTION 3: LIVE MATAFFIN HOME RUN LEADERBOARD                         -->
     <!-- ===================================================================== -->
     <section id="section-leaderboard" class="bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
-      <div class="p-5 sm:p-7 border-b border-zinc-100">
-        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div class="p-4 sm:p-7 border-b border-zinc-100">
+        <!-- Header Row -->
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3.5">
           <div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-wrap items-center gap-2">
               <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Section 3 • Goal vs. Actual</span>
               <span id="storage-mode-badge" class="inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Live Google Sheet Connected
               </span>
             </div>
-            <h2 class="text-xl sm:text-2xl font-black text-[#18181B] mt-0.5">Live Mataffin Home Run Leaderboard</h2>
+            <h2 class="text-xl sm:text-2xl font-black text-[#1A1A1A] mt-0.5">Live Mataffin Home Run Leaderboard</h2>
           </div>
 
-          <!-- Header Actions -->
+          <!-- Action Buttons -->
           <div class="flex flex-wrap items-center gap-2">
             <button onclick="downloadSaturdayReminderICS()" class="px-3.5 py-2 rounded-xl bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#B31218] border border-[#FECACA] font-bold text-xs transition flex items-center gap-1.5">
               <span>📅 Saturday 13:00 Reminder</span>
             </button>
-            <button id="btn-refresh-lb" onclick="loadLeaderboard()" class="px-3.5 py-2 rounded-xl bg-[#F8F9FA] hover:bg-zinc-100 text-[#18181B] border border-zinc-200 font-bold text-xs transition flex items-center gap-1.5">
+            <button id="btn-refresh-lb" onclick="loadLeaderboard()" class="px-3.5 py-2 rounded-xl bg-[#F8F9FA] hover:bg-zinc-100 text-[#1A1A1A] border border-zinc-200 font-bold text-xs transition flex items-center gap-1.5">
               <i id="refresh-icon" class="fa-solid fa-rotate-right text-[#DC1E26]"></i> Refresh Leaderboard
             </button>
           </div>
         </div>
 
-        <!-- Subtle Local Mode Notice (Only visible when GOOGLE_SCRIPT_URL is empty) -->
-        <div id="local-mode-notice" class="hidden mt-3 px-3.5 py-2 rounded-xl bg-[#F8F9FA] border border-zinc-200 text-[11px] text-zinc-600 flex items-center gap-2">
-          <i class="fa-solid fa-flask text-[#DC1E26]"></i>
-          <span><strong>Local Preview Mode:</strong> Entries are currently saved on your device so you can test right away. Paste your Google Apps Script Web App URL into <code class="font-mono bg-zinc-200/70 px-1 rounded">GOOGLE_SCRIPT_URL</code> to sync across all runners.</span>
+        <!-- Distance Filter Pills + Ranking Mode Segmented Control -->
+        <div class="mt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3.5">
+          <!-- Distance Filters -->
+          <div class="flex flex-wrap items-center gap-1.5">
+            <button id="filter-all" onclick="setLeaderboardFilter('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-[#DC1E26] text-white shadow-sm transition">
+              All Distances
+            </button>
+            <button id="filter-10k" onclick="setLeaderboardFilter('10k')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#1A1A1A] border border-zinc-200 transition">
+              10 km
+            </button>
+            <button id="filter-5k" onclick="setLeaderboardFilter('5k')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#1A1A1A] border border-zinc-200 transition">
+              5 km (4.9 km)
+            </button>
+          </div>
+
+          <!-- Ranking Mode Toggle (Segmented Control) -->
+          <div class="inline-flex bg-[#F8F9FA] p-1 rounded-2xl border border-zinc-200 self-start md:self-auto">
+            <button id="rank-mode-fastest" onclick="setRankingMode('fastest')" class="px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#1A1A1A] text-white shadow-sm transition flex items-center gap-1.5">
+              <span>🏆 Fastest Actual</span>
+            </button>
+            <button id="rank-mode-pacing" onclick="setRankingMode('pacing')" class="px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition flex items-center gap-1.5">
+              <span>🎯 Pacing Champion</span>
+            </button>
+          </div>
         </div>
 
-        <!-- Filter Tabs -->
-        <div class="flex items-center gap-2 mt-5">
-          <button id="filter-all" onclick="setLeaderboardFilter('all')" class="px-4 py-1.5 rounded-xl text-xs font-extrabold bg-[#DC1E26] text-white shadow-sm transition">
-            All Distances
-          </button>
-          <button id="filter-10k" onclick="setLeaderboardFilter('10k')" class="px-4 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#18181B] border border-zinc-200 transition">
-            10 km
-          </button>
-          <button id="filter-5k" onclick="setLeaderboardFilter('5k')" class="px-4 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#18181B] border border-zinc-200 transition">
-            5 km (4.9 km)
-          </button>
+        <!-- Dynamic 1-Line Ranking Rule Helper Note -->
+        <div class="mt-3 flex items-center gap-2 text-xs text-zinc-500 bg-[#F8F9FA] px-3.5 py-2 rounded-xl border border-zinc-100">
+          <i class="fa-solid fa-circle-info text-[#DC1E26] shrink-0"></i>
+          <span id="ranking-helper-note">Ranked by fastest actual pace (/km) across distances. Pending runners appear below.</span>
         </div>
       </div>
 
-      <!-- Leaderboard Table -->
+      <!-- Mobile-Responsive Ranked Leaderboard Table -->
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
-            <tr class="bg-[#F8F9FA] border-b border-zinc-200 text-[11px] font-extrabold uppercase tracking-wider text-zinc-500">
-              <th class="py-3.5 px-4 sm:px-6">Runner Name</th>
-              <th class="py-3.5 px-3 text-center">Distance</th>
-              <th class="py-3.5 px-3 text-center">Goal Time &amp; Pace</th>
-              <th class="py-3.5 px-3 text-center">Actual Time &amp; Pace</th>
-              <th class="py-3.5 px-4 sm:px-6 text-right">Variance</th>
+            <tr class="bg-[#F8F9FA] border-b border-zinc-200 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-zinc-500">
+              <th class="py-3 pl-3 pr-1.5 sm:px-5 text-center w-12 sm:w-16">Rank</th>
+              <th class="py-3 px-2 sm:px-4">Runner</th>
+              <th class="py-3 px-2 text-center hidden sm:table-cell">Dist</th>
+              <th class="py-3 px-1.5 sm:px-3 text-center">Goal</th>
+              <th class="py-3 px-1.5 sm:px-3 text-center">Actual</th>
+              <th class="py-3 pl-1.5 pr-3 sm:px-5 text-right">Diff</th>
             </tr>
           </thead>
-          <tbody id="leaderboard-table-body" class="divide-y divide-zinc-100 text-sm">
+          <tbody id="leaderboard-table-body" class="divide-y divide-zinc-100 text-xs sm:text-sm">
             <!-- Populated dynamically -->
           </tbody>
         </table>
@@ -536,7 +550,7 @@
       <div class="flex items-center justify-between pb-3 border-b border-zinc-100">
         <div>
           <span class="text-[11px] font-extrabold uppercase tracking-wider text-[#DC1E26]">Post-Race Check-In</span>
-          <h4 class="font-black text-[#18181B] text-lg">Log Actual Finish Time</h4>
+          <h4 class="font-black text-[#1A1A1A] text-lg">Log Actual Finish Time</h4>
         </div>
         <button onclick="closeActualModal()" class="w-8 h-8 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 flex items-center justify-center">
           <i class="fa-solid fa-xmark"></i>
@@ -545,18 +559,27 @@
 
       <form onsubmit="handleActualSubmit(event)" class="mt-4 space-y-4">
         <div class="bg-[#F8F9FA] rounded-xl p-3 border border-zinc-200 text-xs">
-          <div class="font-bold text-[#18181B] text-sm" id="modal-runner-name">Runner Name</div>
+          <div class="font-bold text-[#1A1A1A] text-sm" id="modal-runner-name">Runner Name</div>
           <div class="text-zinc-500 mt-0.5" id="modal-runner-meta">10 km • Goal: 1:00:00</div>
         </div>
 
         <div>
           <label class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">Actual Finish Time (HH:MM:SS)</label>
           <div class="flex items-center gap-1.5 font-mono">
-            <input id="actual-hr" type="number" min="0" max="3" value="0" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#18181B] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Hours" />
-            <span class="font-bold text-zinc-400">:</span>
-            <input id="actual-min" type="number" min="0" max="59" value="58" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#18181B] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Minutes" />
-            <span class="font-bold text-zinc-400">:</span>
-            <input id="actual-sec" type="number" min="0" max="59" value="30" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#18181B] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Seconds" />
+            <div class="flex-1 flex flex-col items-center">
+              <input id="actual-hr" type="number" inputmode="numeric" min="0" max="3" value="0" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Hours" />
+              <span class="text-[10px] font-sans font-bold text-zinc-400 uppercase mt-1">hr</span>
+            </div>
+            <span class="font-bold text-zinc-400 -mt-4">:</span>
+            <div class="flex-1 flex flex-col items-center">
+              <input id="actual-min" type="number" inputmode="numeric" min="0" max="59" value="58" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Minutes" />
+              <span class="text-[10px] font-sans font-bold text-zinc-400 uppercase mt-1">min</span>
+            </div>
+            <span class="font-bold text-zinc-400 -mt-4">:</span>
+            <div class="flex-1 flex flex-col items-center">
+              <input id="actual-sec" type="number" inputmode="numeric" min="0" max="59" value="30" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Seconds" />
+              <span class="text-[10px] font-sans font-bold text-zinc-400 uppercase mt-1">sec</span>
+            </div>
           </div>
         </div>
 
@@ -579,7 +602,7 @@
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-zinc-200 max-h-[90vh] flex flex-col">
       <div class="flex items-center justify-between pb-3 border-b border-zinc-100">
         <div>
-          <h4 class="font-black text-[#18181B] text-lg">Printable Wrist Pace Band</h4>
+          <h4 class="font-black text-[#1A1A1A] text-lg">Printable Wrist Pace Band</h4>
           <p class="text-xs text-zinc-500">Cut along the dashed border and tape around your wrist</p>
         </div>
         <button onclick="toggleWristBandModal(false)" class="w-8 h-8 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 flex items-center justify-center">
@@ -588,9 +611,9 @@
       </div>
 
       <div class="overflow-y-auto my-4 flex-1 flex justify-center">
-        <div id="print-band-area" class="w-64 border-2 border-dashed border-zinc-400 p-3.5 rounded-xl bg-white text-[#18181B] font-mono text-xs">
+        <div id="print-band-area" class="w-64 border-2 border-dashed border-zinc-400 p-3.5 rounded-xl bg-white text-[#1A1A1A] font-mono text-xs">
           <div class="text-center border-b-2 border-[#DC1E26] pb-2 mb-2">
-            <div class="font-sans font-black text-sm uppercase tracking-tight text-[#18181B]">Mataffin Home Run</div>
+            <div class="font-sans font-black text-sm uppercase tracking-tight text-[#1A1A1A]">Mataffin Home Run</div>
             <div id="band-header-meta" class="text-[11px] font-bold text-[#DC1E26]">10.0 km • 1:00:00 (06:00/km)</div>
             <div id="band-header-strat" class="text-[10px] font-sans text-zinc-500">Even Effort (Terrain Adjusted)</div>
           </div>
@@ -621,18 +644,17 @@
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden bg-[#18181B] text-white px-4 py-3 rounded-2xl shadow-xl border-l-4 border-[#DC1E26] flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden bg-[#1A1A1A] text-white px-4 py-3 rounded-2xl shadow-xl border-l-4 border-[#DC1E26] flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
     <i class="fa-solid fa-circle-check text-[#DC1E26] text-base"></i>
     <span id="toast-message">Done!</span>
   </div>
 
   <script>
     // =========================================================================
-    // GOOGLE SHEET BACKEND CONFIGURATION
-    // Connected to your live Google Apps Script Web App URL.
+    // LIVE GOOGLE SHEET BACKEND & EVENT URL CONFIGURATION
     // =========================================================================
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyUzAtTiV3K5sPWOvgjpf-YuaqE90vTsRnl5o3fhApz1pnheQvKkvDULyZfOXwzvEul/exec";
-    const LOCAL_STORAGE_KEY = "mataffin_home_run_2026_leaderboard";
+    const LIVE_PAGE_URL = "https://yollieblom.github.io/Mataffin-pace/";
 
     // =========================================================================
     // COURSE DATA: Mbombela Stadium (~660m) <-> Halls Farm Litchi Groves <-> River (~620m)
@@ -643,11 +665,11 @@
         segments: [
           { kmLabel: '1', dist: 1.0, title: 'Stadium Exit to Mataffin Tarmac', surface: 'Tarmac', surfaceType: 'tar', startElev: 660, endElev: 663, elevDelta: '+3m', effortMod: 0.005, rpe: '6/10', rpeNum: 6.0, cue: "Settle into rhythm leaving Mbombela Stadium; don't get pulled out too fast." },
           { kmLabel: '2', dist: 1.0, title: 'Entering Halls Farm & Upper Orchards', surface: 'Tar → Dirt', surfaceType: 'mixed', startElev: 663, endElev: 669, elevDelta: '+6m', effortMod: 0.018, rpe: '6.5/10', rpeNum: 6.5, cue: 'Shorten stride slightly on the initial rise onto the farm road.' },
-          { kmLabel: '3', dist: 1.0, title: 'Winding into the Litchi Groves', surface: 'Orchard Dirt', surfaceType: 'dirt', startElev: 669, endElev: 654, elevDelta: '-15m', effortMod: -0.015, rpe: '6.5/10', rpeNum: 6.5, cue: 'Shaded litchi canopy! Let gravity help while watching footing on compact dirt.' },
-          { kmLabel: '4', dist: 1.0, title: 'Dropping Toward Crocodile River', surface: 'Orchard Dirt', surfaceType: 'dirt', startElev: 654, endElev: 632, elevDelta: '-22m', effortMod: -0.025, rpe: '7/10', rpeNum: 7.0, cue: 'Fastest downhill drop. Relax your shoulders—bank rhythm, not extra effort.' },
-          { kmLabel: '5', dist: 1.0, title: 'River Bank & 5 km Turnaround', surface: 'Orchard Dirt', surfaceType: 'dirt', startElev: 632, endElev: 620, elevDelta: '-12m', effortMod: -0.010, rpe: '7/10', rpeNum: 7.0, cue: 'Pass along the river, grab water, and pivot cleanly at the turnaround.' },
-          { kmLabel: '6', dist: 1.0, title: 'Leaving River Back into Groves', surface: 'Orchard Dirt', surfaceType: 'dirt', startElev: 620, endElev: 632, elevDelta: '+12m', effortMod: 0.016, rpe: '7.5/10', rpeNum: 7.5, cue: 'Return climb begins. Keep perceived effort steady as the watch eases.' },
-          { kmLabel: '7', dist: 1.0, title: 'Mid-Orchard Climb through Litchi Trees', surface: 'Orchard Dirt', surfaceType: 'dirt', startElev: 632, endElev: 654, elevDelta: '+22m', effortMod: 0.032, rpe: '8/10', rpeNum: 8.0, cue: 'Toughest km on course. Drive elbows back; humidity sits heavier under trees.' },
+          { kmLabel: '3', dist: 1.0, title: 'Winding into the Litchi Groves', surface: 'Compact Dirt', surfaceType: 'dirt', startElev: 669, endElev: 654, elevDelta: '-15m', effortMod: -0.015, rpe: '6.5/10', rpeNum: 6.5, cue: 'Shaded litchi canopy! Let gravity help while watching footing on compact dirt.' },
+          { kmLabel: '4', dist: 1.0, title: 'Dropping Toward Crocodile River', surface: 'Compact Dirt', surfaceType: 'dirt', startElev: 654, endElev: 632, elevDelta: '-22m', effortMod: -0.025, rpe: '7/10', rpeNum: 7.0, cue: 'Fastest downhill drop. Relax your shoulders—bank rhythm, not extra effort.' },
+          { kmLabel: '5', dist: 1.0, title: 'River Bank & 5 km Turnaround', surface: 'Compact Dirt', surfaceType: 'dirt', startElev: 632, endElev: 620, elevDelta: '-12m', effortMod: -0.010, rpe: '7/10', rpeNum: 7.0, cue: 'Pass along the river, grab water, and pivot cleanly at the turnaround.' },
+          { kmLabel: '6', dist: 1.0, title: 'Leaving River Back into Groves', surface: 'Compact Dirt', surfaceType: 'dirt', startElev: 620, endElev: 632, elevDelta: '+12m', effortMod: 0.016, rpe: '7.5/10', rpeNum: 7.5, cue: 'Return climb begins. Keep perceived effort steady as the watch eases.' },
+          { kmLabel: '7', dist: 1.0, title: 'Mid-Orchard Climb through Litchi Trees', surface: 'Compact Dirt', surfaceType: 'dirt', startElev: 632, endElev: 654, elevDelta: '+22m', effortMod: 0.032, rpe: '8/10', rpeNum: 8.0, cue: 'Toughest km on course. Drive elbows back; humidity sits heavier under trees.' },
           { kmLabel: '8', dist: 1.0, title: 'Climbing Out of Halls Farm', surface: 'Dirt → Tar', surfaceType: 'mixed', startElev: 654, endElev: 669, elevDelta: '+15m', effortMod: 0.020, rpe: '8/10', rpeNum: 8.0, cue: 'Crest the main orchard climb and transition back onto firmer tarmac.' },
           { kmLabel: '9', dist: 1.0, title: 'Stadium Approach Road', surface: 'Tarmac', surfaceType: 'tar', startElev: 669, endElev: 663, elevDelta: '-6m', effortMod: -0.012, rpe: '8.5/10', rpeNum: 8.5, cue: 'Use the firmer tarmac snap to pick up leg turnover toward the stadium.' },
           { kmLabel: '10', dist: 1.0, title: 'Final Push into Mbombela Stadium', surface: 'Tarmac', surfaceType: 'tar', startElev: 663, endElev: 660, elevDelta: '-3m', effortMod: -0.029, rpe: '9.5/10', rpeNum: 9.5, cue: 'Spot the stadium columns and empty the tank to the finish arch!' }
@@ -657,8 +679,8 @@
         gunStartSeconds: 6 * 3600 + 40 * 60, // 06:40 AM
         segments: [
           { kmLabel: '1', dist: 1.0, title: 'Stadium Exit toward Farm Gate', surface: 'Tarmac', surfaceType: 'tar', startElev: 660, endElev: 664, elevDelta: '+4m', effortMod: 0.008, rpe: '7/10', rpeNum: 7.0, cue: 'Controlled start from the 06:40 gun; find clear air early.' },
-          { kmLabel: '2', dist: 1.0, title: 'Entering Halls Farm & Litchi Edge', surface: 'Orchard Dirt', surfaceType: 'dirt', startElev: 664, endElev: 648, elevDelta: '-16m', effortMod: -0.020, rpe: '7.5/10', rpeNum: 7.5, cue: 'Open up your stride as the farm track dips gently into the trees.' },
-          { kmLabel: '3', dist: 1.0, title: 'Turnaround & Initial Return Climb', surface: 'Orchard Dirt', surfaceType: 'dirt', startElev: 648, endElev: 646, elevDelta: '-2m net', effortMod: 0.006, rpe: '8/10', rpeNum: 8.0, cue: 'Pivot cleanly at the turnaround cone and lean slightly into the incline.' },
+          { kmLabel: '2', dist: 1.0, title: 'Entering Halls Farm & Litchi Edge', surface: 'Compact Dirt', surfaceType: 'dirt', startElev: 664, endElev: 648, elevDelta: '-16m', effortMod: -0.020, rpe: '7.5/10', rpeNum: 7.5, cue: 'Open up your stride as the farm track dips gently into the trees.' },
+          { kmLabel: '3', dist: 1.0, title: 'Turnaround & Initial Return Climb', surface: 'Compact Dirt', surfaceType: 'dirt', startElev: 648, endElev: 646, elevDelta: '-2m net', effortMod: 0.006, rpe: '8/10', rpeNum: 8.0, cue: 'Pivot cleanly at the turnaround cone and lean slightly into the incline.' },
           { kmLabel: '4', dist: 1.0, title: 'Climbing Out of Halls Farm to Tar', surface: 'Dirt → Tar', surfaceType: 'mixed', startElev: 646, endElev: 664, elevDelta: '+18m', effortMod: 0.030, rpe: '8.5/10', rpeNum: 8.5, cue: 'Hold strong form on the uphill orchard drag back to the main road.' },
           { kmLabel: '4.9', dist: 0.9, title: 'Final Sprint to Stadium Finish', surface: 'Tarmac', surfaceType: 'tar', startElev: 664, endElev: 660, elevDelta: '-4m', effortMod: -0.024, rpe: '9.5/10', rpeNum: 9.5, cue: 'Back on fast tarmac—kick hard all the way to the stadium finish!' }
         ]
@@ -676,14 +698,16 @@
       activeChartIdx: 3,
       calculatedSplits: [],
       leaderboardEntries: [],
-      leaderboardFilter: 'all',
+      leaderboardFilter: 'all',    // 'all' | '10k' | '5k'
+      rankingMode: 'fastest',      // 'fastest' | 'pacing'
       editingRunnerId: null
     };
 
     // =========================================================================
-    // FORMATTING HELPERS
+    // FORMATTING & ROBUST TIME PARSING HELPERS
     // =========================================================================
     function formatPaceMMSS(totalSeconds) {
+      if (!isFinite(totalSeconds) || totalSeconds <= 0) return '—';
       const s = Math.round(totalSeconds);
       const mins = Math.floor(s / 60);
       const secs = s % 60;
@@ -691,6 +715,7 @@
     }
 
     function formatDuration(totalSeconds) {
+      if (!isFinite(totalSeconds) || totalSeconds < 0) return '—';
       const s = Math.round(totalSeconds);
       const hrs = Math.floor(s / 3600);
       const mins = Math.floor((s % 3600) / 60);
@@ -701,6 +726,17 @@
       return `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     }
 
+    function formatVariance(absSeconds) {
+      const s = Math.round(absSeconds);
+      const hrs = Math.floor(s / 3600);
+      const mins = Math.floor((s % 3600) / 60);
+      const secs = s % 60;
+      if (hrs > 0) {
+        return `${hrs}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      }
+      return `${mins}:${String(secs).padStart(2, '0')}`;
+    }
+
     function formatHHMMSS(totalSeconds) {
       const s = Math.round(totalSeconds);
       const hrs = Math.floor(s / 3600);
@@ -709,13 +745,27 @@
       return `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     }
 
-    function parseHHMMSS(str) {
-      if (!str) return null;
-      const parts = String(str).trim().split(':').map(Number);
-      if (parts.some(isNaN)) return null;
-      if (parts.length === 3) return parts[0] * 3600 + parts[1] * 60 + parts[2];
-      if (parts.length === 2) return parts[0] * 60 + parts[1];
-      return null;
+    /**
+     * Gracefully parses MM:SS, H:MM:SS, HH:MM:SS and strips any leading apostrophe
+     * saved by Google Sheets plain-text formatting.
+     */
+    function parseTimeToSeconds(raw) {
+      if (raw === null || raw === undefined) return null;
+      const cleaned = String(raw).trim().replace(/^'+/, '').trim();
+      if (!cleaned) return null;
+
+      const parts = cleaned.split(':').map(p => Number(p.trim()));
+      if (parts.some(n => isNaN(n) || n < 0)) return null;
+
+      let total = 0;
+      if (parts.length === 3) {
+        total = parts[0] * 3600 + parts[1] * 60 + parts[2];
+      } else if (parts.length === 2) {
+        total = parts[0] * 60 + parts[1];
+      } else {
+        return null;
+      }
+      return total > 0 ? total : null;
     }
 
     function formatTimeOfDay(secondsFromMidnight) {
@@ -732,9 +782,14 @@
       return state.raceKey === '10k' ? 10.0 : state.exact5kDist;
     }
 
-    function distanceStringToKm(distStr) {
-      const num = parseFloat(distStr);
-      return isNaN(num) ? 10.0 : num;
+    /**
+     * Maps distance label from the sheet to exact official km for pace calculation:
+     * 10 for 10 km entries, 4.9 for 4.9 km / 5 km entries.
+     */
+    function distanceLabelToKm(distStr) {
+      const d = String(distStr || '').toLowerCase();
+      if (d.includes('10')) return 10.0;
+      return 4.9;
     }
 
     // =========================================================================
@@ -757,9 +812,10 @@
         btn5.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-[#DC1E26] shadow-md';
         btn10.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-white hover:bg-white/10';
         subBar.classList.remove('hidden');
-        document.getElementById('goal-distance').value = state.exact5kDist === 4.9 ? '4.9 km' : '5 km';
+        document.getElementById('goal-distance').value = '4.9 km';
       }
       recalculateAndRender();
+      autoFillGoalFromCalculator(true);
     }
 
     function set5kExact(distVal) {
@@ -772,14 +828,13 @@
       const b50 = document.getElementById('btn-exact-50');
       if (distVal === 4.9) {
         b49.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition';
-        b50.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#18181B] transition';
-        document.getElementById('goal-distance').value = '4.9 km';
+        b50.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition';
       } else {
         b50.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition';
-        b49.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#18181B] transition';
-        document.getElementById('goal-distance').value = '5 km';
+        b49.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition';
       }
       recalculateAndRender();
+      autoFillGoalFromCalculator(true);
     }
 
     function setStrategy(strat) {
@@ -788,7 +843,7 @@
         const el = document.getElementById(`strat-${id}`);
         el.className = id === strat
           ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition'
-          : 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#18181B] transition';
+          : 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition';
       });
       recalculateAndRender();
     }
@@ -923,7 +978,7 @@
 
       for (let i = 0; i < splits.length; i++) {
         const p1 = points[i], p2 = points[i + 1], s = splits[i];
-        const strokeColor = s.surfaceType === 'tar' ? '#18181B' : '#DC1E26';
+        const strokeColor = s.surfaceType === 'tar' ? '#1A1A1A' : '#DC1E26';
         html += `<line x1="${getX(p1.km)}" y1="${getY(p1.elev)}" x2="${getX(p2.km)}" y2="${getY(p2.elev)}" stroke="${strokeColor}" stroke-width="4" stroke-linecap="round" />`;
       }
 
@@ -932,8 +987,8 @@
       if (turnPt) {
         const tx = getX(turnPt.km);
         html += `
-          <line x1="${tx}" y1="${padT}" x2="${tx}" y2="${padT + plotH}" stroke="#18181B" stroke-dasharray="3 3" stroke-width="1.5" />
-          <rect x="${tx - 54}" y="${padT - 8}" width="108" height="18" rx="6" fill="#18181B" />
+          <line x1="${tx}" y1="${padT}" x2="${tx}" y2="${padT + plotH}" stroke="#1A1A1A" stroke-dasharray="3 3" stroke-width="1.5" />
+          <rect x="${tx - 54}" y="${padT - 8}" width="108" height="18" rx="6" fill="#1A1A1A" />
           <text x="${tx}" y="${padT + 4}" text-anchor="middle" class="text-[10px] fill-white font-bold">RIVER TURNAROUND</text>
         `;
       }
@@ -942,7 +997,7 @@
         const pt = points[i], s = pt.split;
         const cx = getX(pt.km), cy = getY(pt.elev);
         const isActive = (i - 1) === state.activeChartIdx;
-        const nodeColor = s.surfaceType === 'tar' ? '#18181B' : '#DC1E26';
+        const nodeColor = s.surfaceType === 'tar' ? '#1A1A1A' : '#DC1E26';
 
         html += `
           <text x="${cx}" y="${H - 12}" text-anchor="middle" class="text-[11px] font-mono ${isActive ? 'fill-[#DC1E26] font-extrabold' : 'fill-zinc-500 font-semibold'}">
@@ -988,7 +1043,7 @@
 
       state.calculatedSplits.forEach((s, idx) => {
         const surfBadge = s.surfaceType === 'tar'
-          ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-zinc-100 text-[#18181B]">Tarmac</span>`
+          ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-zinc-100 text-[#1A1A1A]">Tarmac</span>`
           : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-[#FEF2F2] text-[#B31218] border border-[#FECACA]">${s.surface}</span>`;
 
         const isDown = s.elevDelta.startsWith('-');
@@ -1006,12 +1061,12 @@
 
         rowsHtml += `
           <tr class="${rowBg} transition cursor-pointer" onclick="selectChartSegment(${idx})">
-            <td class="py-3.5 px-4 sm:px-6 font-mono font-black text-[#18181B] whitespace-nowrap">
+            <td class="py-3.5 px-4 sm:px-6 font-mono font-black text-[#1A1A1A] whitespace-nowrap">
               km ${s.kmLabel}
               ${isTurnaround ? `<span class="block text-[10px] font-sans font-extrabold text-[#DC1E26] uppercase">Turnaround</span>` : ''}
             </td>
             <td class="py-3.5 px-3">
-              <div class="font-bold text-[#18181B] text-xs sm:text-sm">${s.title}</div>
+              <div class="font-bold text-[#1A1A1A] text-xs sm:text-sm">${s.title}</div>
               <div class="mt-1 flex flex-wrap items-center gap-2">
                 ${surfBadge}
                 ${elevTag}
@@ -1019,13 +1074,13 @@
               </div>
             </td>
             <td class="py-3.5 px-3 text-center whitespace-nowrap">
-              <div class="font-mono text-xs font-bold text-[#18181B]">${s.rpe}</div>
+              <div class="font-mono text-xs font-bold text-[#1A1A1A]">${s.rpe}</div>
               <div class="w-12 h-1.5 bg-zinc-200 rounded-full mx-auto mt-1 overflow-hidden">
                 <div class="bg-[#DC1E26] h-full rounded-full" style="width: ${s.rpeNum * 10}%"></div>
               </div>
             </td>
             <td class="py-3.5 px-3 text-center whitespace-nowrap">
-              <div class="font-mono font-extrabold text-[#18181B] text-sm sm:text-base">${formatPaceMMSS(s.effectivePaceSec)}<span class="text-xs font-normal text-zinc-400">/km</span></div>
+              <div class="font-mono font-extrabold text-[#1A1A1A] text-sm sm:text-base">${formatPaceMMSS(s.effectivePaceSec)}<span class="text-xs font-normal text-zinc-400">/km</span></div>
               <div>${diffTag}</div>
             </td>
             <td class="py-3.5 px-3 text-center whitespace-nowrap font-mono font-black text-[#B31218] text-sm sm:text-base">
@@ -1074,7 +1129,8 @@
         `----------------------------------------`,
         ...splits.map(s => `*km ${s.kmLabel}* | ${formatPaceMMSS(s.effectivePaceSec)}/km | ⏱️ ${formatDuration(s.cumulativeSec)} | ${s.elevDelta} (${s.surface})`),
         `----------------------------------------`,
-        `📍 *Mbombela Stadium ↔ Halls Farm*`
+        `📍 *Mbombela Stadium ↔ Halls Farm*`,
+        `🔗 ${LIVE_PAGE_URL}`
       ];
 
       const ta = document.createElement('textarea');
@@ -1093,27 +1149,25 @@
     // =========================================================================
     // SECTION 2: GOAL SUBMISSION & 1-TAP SATURDAY 13:00 CALENDAR REMINDER
     // =========================================================================
-    function autoFillGoalFromCalculator() {
+    function autoFillGoalFromCalculator(silent = false) {
       const totalDist = getTotalDistance();
       const targetSec = Math.round(state.avgPaceSecPerKm * totalDist);
 
-      document.getElementById('goal-distance').value = state.raceKey === '10k' ? '10 km' : (state.exact5kDist === 4.9 ? '4.9 km' : '5 km');
+      document.getElementById('goal-distance').value = state.raceKey === '10k' ? '10 km' : '4.9 km';
       document.getElementById('goal-hr').value = Math.floor(targetSec / 3600);
       document.getElementById('goal-min').value = String(Math.floor((targetSec % 3600) / 60)).padStart(2, '0');
       document.getElementById('goal-sec').value = String(targetSec % 60).padStart(2, '0');
-      showToast('Goal synced from calculator!');
+      if (!silent) showToast('Goal synced from calculator!');
     }
 
     function buildGoogleCalendarUrl() {
-      const pageUrl = window.location.href;
-      const title = encodeURIComponent('Log Actual Time — Mataffin Home Run Leaderboard');
-      const details = encodeURIComponent(`Time to log your actual Mataffin Home Run finish time and compare it against your goal!\n\nOpen Leaderboard: ${pageUrl}`);
+      const title = encodeURIComponent('Log Mataffin Home Run Actual Time');
+      const details = encodeURIComponent(`Time to log your actual Mataffin Home Run finish time and see your live leaderboard rank!\n\nOpen Leaderboard: ${LIVE_PAGE_URL}`);
       const location = encodeURIComponent('Mbombela Stadium, Mbombela');
       return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=20261121T110000Z/20261121T113000Z&details=${details}&location=${location}`;
     }
 
     function downloadSaturdayReminderICS() {
-      const pageUrl = window.location.href;
       const icsContent = [
         'BEGIN:VCALENDAR',
         'VERSION:2.0',
@@ -1124,8 +1178,8 @@
         'DTSTAMP:20261119T060000Z',
         'DTSTART:20261121T110000Z',
         'DTEND:20261121T113000Z',
-        'SUMMARY:Log Actual Time — Mataffin Home Run Leaderboard',
-        `DESCRIPTION:Time to enter your actual Mataffin Home Run finish time and see how you compared to your goal! Open the leaderboard here: ${pageUrl}`,
+        'SUMMARY:Log Mataffin Home Run Actual Time',
+        `DESCRIPTION:Time to enter your actual Mataffin Home Run finish time and see how you ranked! Open the leaderboard here: ${LIVE_PAGE_URL}`,
         'LOCATION:Mbombela Stadium',
         'BEGIN:VALARM',
         'TRIGGER:-PT0M',
@@ -1145,7 +1199,7 @@
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-      showToast('Calendar reminder downloaded for Sat 21 Nov at 13:00!');
+      showToast('Reminder downloaded for Sat 21 Nov at 13:00!');
     }
 
     async function handleGoalSubmit(e) {
@@ -1167,84 +1221,44 @@
       btn.disabled = true;
       btn.innerHTML = `<i class="fa-solid fa-spinner fa-spin"></i> Saving...`;
 
-      const newEntry = {
-        id: 'runner_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
+      const payload = {
+        action: 'add_goal',
+        id: String(Date.now()),
         name,
         distance,
-        goalTime: goalTimeStr,
-        actualTime: ''
+        goalTime: goalTimeStr
       };
 
       try {
-        if (GOOGLE_SCRIPT_URL) {
-          await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ action: 'add_goal', ...newEntry })
-          });
-          await loadLeaderboard();
-        } else {
-          const existing = getLocalEntries();
-          existing.unshift(newEntry);
-          saveLocalEntries(existing);
-          state.leaderboardEntries = existing;
-          renderLeaderboard();
-        }
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
 
-        // Show celebratory confirmation box
+        await loadLeaderboard();
+
         document.getElementById('goal-confirm-summary').textContent =
-          `${name} (${distance} • Goal ${formatDuration(totalGoalSec)}) is locked in! Set a quick reminder below to log your actual time on Saturday afternoon.`;
+          `${name} (${distance} • Goal ${formatDuration(totalGoalSec)}) is locked in! Set a quick reminder below to log your actual time Saturday at 13:00.`;
         document.getElementById('gcal-reminder-link').href = buildGoogleCalendarUrl();
         document.getElementById('goal-confirmation-box').classList.remove('hidden');
         document.getElementById('goal-name').value = '';
-        showToast('Goal saved to leaderboard!');
+        showToast('Goal added to live leaderboard!');
       } catch (err) {
         console.error(err);
-        showToast('Could not save goal. Check your connection.');
+        showToast('Could not save goal. Please check your connection.');
       } finally {
         btn.disabled = false;
-        btn.innerHTML = `<i class="fa-solid fa-check-circle"></i> Save My Goal`;
+        btn.innerHTML = `<i class="fa-solid fa-plus-circle"></i> Add My Goal`;
       }
     }
 
     // =========================================================================
-    // SECTION 3: LIVE LEADERBOARD (GOOGLE SHEET OR LOCALSTORAGE FALLBACK)
+    // SECTION 3: LIVE LEADERBOARD WITH RANKING & PACING CHAMPION LOGIC
     // =========================================================================
-    function getLocalEntries() {
-      try {
-        const raw = localStorage.getItem(LOCAL_STORAGE_KEY);
-        return raw ? JSON.parse(raw) : [];
-      } catch (e) {
-        return [];
-      }
-    }
-
-    function saveLocalEntries(entries) {
-      try {
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(entries));
-      } catch (e) {
-        console.error(e);
-      }
-    }
-
     async function loadLeaderboard() {
       const icon = document.getElementById('refresh-icon');
-      const badge = document.getElementById('storage-mode-badge');
       icon.classList.add('fa-spin');
-
-      if (!GOOGLE_SCRIPT_URL) {
-        badge.className = 'inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200';
-        badge.innerHTML = 'Local Preview Mode';
-        document.getElementById('local-mode-notice').classList.remove('hidden');
-        state.leaderboardEntries = getLocalEntries();
-        renderLeaderboard();
-        setTimeout(() => icon.classList.remove('fa-spin'), 300);
-        return;
-      }
-
-      badge.className = 'inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200';
-      badge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Live Google Sheet Connected';
-      document.getElementById('local-mode-notice').classList.add('hidden');
 
       try {
         const res = await fetch(GOOGLE_SCRIPT_URL);
@@ -1255,7 +1269,7 @@
         console.error(err);
         showToast('Could not refresh leaderboard from Google Sheet.');
       } finally {
-        icon.classList.remove('fa-spin');
+        setTimeout(() => icon.classList.remove('fa-spin'), 250);
       }
     }
 
@@ -1264,25 +1278,56 @@
       ['all', '10k', '5k'].forEach(k => {
         const btn = document.getElementById(`filter-${k}`);
         btn.className = k === filterKey
-          ? 'px-4 py-1.5 rounded-xl text-xs font-extrabold bg-[#DC1E26] text-white shadow-sm transition'
-          : 'px-4 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#18181B] border border-zinc-200 transition';
+          ? 'px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-[#DC1E26] text-white shadow-sm transition'
+          : 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#1A1A1A] border border-zinc-200 transition';
       });
       renderLeaderboard();
     }
 
+    function setRankingMode(mode) {
+      state.rankingMode = mode;
+      const btnFastest = document.getElementById('rank-mode-fastest');
+      const btnPacing = document.getElementById('rank-mode-pacing');
+
+      if (mode === 'fastest') {
+        btnFastest.className = 'px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#1A1A1A] text-white shadow-sm transition flex items-center gap-1.5';
+        btnPacing.className = 'px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition flex items-center gap-1.5';
+      } else {
+        btnPacing.className = 'px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#DC1E26] text-white shadow-sm transition flex items-center gap-1.5';
+        btnFastest.className = 'px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition flex items-center gap-1.5';
+      }
+      renderLeaderboard();
+    }
+
+    function updateRankingHelperNote() {
+      const noteEl = document.getElementById('ranking-helper-note');
+      if (state.rankingMode === 'pacing') {
+        noteEl.textContent = 'Pacing Champion: Ranked by closest actual finish to predicted goal time (beating goal wins ties).';
+      } else if (state.leaderboardFilter === 'all') {
+        noteEl.textContent = 'Fastest Actual: Ranked by fastest actual pace (/km) across all distances so 4.9 km & 10 km compare fairly.';
+      } else if (state.leaderboardFilter === '10k') {
+        noteEl.textContent = 'Fastest Actual (10 km): Ranked by fastest actual finish time. Pending runners appear below.';
+      } else {
+        noteEl.textContent = 'Fastest Actual (5 km / 4.9 km): Ranked by fastest actual finish time. Pending runners appear below.';
+      }
+    }
+
     function renderLeaderboard() {
+      updateRankingHelperNote();
       const tbody = document.getElementById('leaderboard-table-body');
-      let entries = state.leaderboardEntries.filter(e => {
+
+      // 1. Filter by distance tab
+      const filtered = state.leaderboardEntries.filter(e => {
         if (state.leaderboardFilter === 'all') return true;
         const d = String(e.distance || '').toLowerCase();
         if (state.leaderboardFilter === '10k') return d.includes('10');
         return d.includes('5') || d.includes('4.9');
       });
 
-      if (entries.length === 0) {
+      if (filtered.length === 0) {
         tbody.innerHTML = `
           <tr>
-            <td colspan="5" class="py-10 px-6 text-center text-zinc-400">
+            <td colspan="6" class="py-10 px-6 text-center text-zinc-400">
               <i class="fa-solid fa-trophy text-2xl mb-2 text-zinc-300 block"></i>
               <span class="font-semibold text-zinc-500">No race goals logged yet for this distance.</span>
               <span class="block text-xs mt-1">Be the first to lock in your goal above!</span>
@@ -1292,56 +1337,152 @@
         return;
       }
 
-      tbody.innerHTML = entries.map(entry => {
-        const distKm = distanceStringToKm(entry.distance);
-        const goalSec = parseHHMMSS(entry.goalTime);
-        const actualSec = parseHHMMSS(entry.actualTime);
+      // 2. Enrich entries with parsed seconds, pace, and variance
+      const enriched = filtered.map(entry => {
+        const distKm = distanceLabelToKm(entry.distance);
+        const goalSec = parseTimeToSeconds(entry.goalTime);
+        const actualSec = parseTimeToSeconds(entry.actualTime);
+        const actualPace = actualSec ? (actualSec / distKm) : null;
+        const goalPace = goalSec ? (goalSec / distKm) : null;
+        const diffSec = (actualSec !== null && goalSec !== null) ? (actualSec - goalSec) : null;
+        const absDiffSec = diffSec !== null ? Math.abs(diffSec) : null;
 
-        const goalPaceStr = goalSec ? `${formatPaceMMSS(goalSec / distKm)}/km` : '—';
-        const actualPaceStr = actualSec ? `${formatPaceMMSS(actualSec / distKm)}/km` : '';
+        return {
+          ...entry,
+          distKm,
+          goalSec,
+          actualSec,
+          actualPace,
+          goalPace,
+          diffSec,
+          absDiffSec
+        };
+      });
 
-        let actualCell = `
-          <button onclick="openActualModal('${entry.id}')" class="px-3 py-1.5 rounded-xl bg-[#FEF2F2] hover:bg-[#DC1E26] text-[#DC1E26] hover:text-white border border-[#FECACA] font-bold text-xs transition inline-flex items-center gap-1.5">
-            <i class="fa-solid fa-stopwatch"></i> Log Actual Time
-          </button>
-        `;
-        let varianceCell = `<span class="text-xs font-semibold text-zinc-400">Pending race</span>`;
+      // 3. Separate finishers from pending runners
+      const finishers = enriched.filter(item => item.actualSec !== null);
+      const pending = enriched.filter(item => item.actualSec === null);
 
-        if (actualSec) {
-          actualCell = `
-            <div class="font-mono font-extrabold text-[#18181B]">${formatDuration(actualSec)}</div>
-            <div class="text-[11px] font-mono text-zinc-500">${actualPaceStr}</div>
-          `;
-          if (goalSec) {
-            const diff = actualSec - goalSec;
-            const absFormatted = formatDuration(Math.abs(diff));
-            if (diff < 0) {
-              varianceCell = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-extrabold font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">-${absFormatted} Faster</span>`;
-            } else if (diff === 0) {
-              varianceCell = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-extrabold font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">Spot On!</span>`;
-            } else {
-              varianceCell = `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold font-mono bg-zinc-100 text-zinc-700 border border-zinc-200">+${absFormatted}</span>`;
-            }
+      // 4. Sort finishers based on active ranking mode & distance filter
+      if (state.rankingMode === 'fastest') {
+        finishers.sort((a, b) => {
+          if (state.leaderboardFilter === 'all') {
+            return a.actualPace - b.actualPace;
+          }
+          return a.actualSec - b.actualSec;
+        });
+      } else {
+        // Pacing Champion: smallest absolute difference from goal wins;
+        // if tied on absolute difference, beating the goal (negative diff) ranks ahead.
+        finishers.sort((a, b) => {
+          const absA = a.absDiffSec !== null ? a.absDiffSec : Number.MAX_SAFE_INTEGER;
+          const absB = b.absDiffSec !== null ? b.absDiffSec : Number.MAX_SAFE_INTEGER;
+          if (absA !== absB) return absA - absB;
+          const diffA = a.diffSec !== null ? a.diffSec : Number.MAX_SAFE_INTEGER;
+          const diffB = b.diffSec !== null ? b.diffSec : Number.MAX_SAFE_INTEGER;
+          return diffA - diffB;
+        });
+      }
+
+      // 5. Render ranked finishers first, then pending runners underneath
+      let rowsHtml = '';
+
+      finishers.forEach((item, idx) => {
+        const rankNum = idx + 1;
+        let rankDisplay = `<span class="font-mono font-extrabold text-zinc-500 text-xs sm:text-sm">#${rankNum}</span>`;
+        let rowAccent = 'hover:bg-[#F8F9FA] border-l-4 border-transparent';
+
+        if (rankNum === 1) {
+          rankDisplay = `<span class="text-lg sm:text-xl leading-none" title="1st Place">🥇</span>`;
+          rowAccent = 'bg-amber-50/60 hover:bg-amber-50 border-l-4 border-amber-400';
+        } else if (rankNum === 2) {
+          rankDisplay = `<span class="text-lg sm:text-xl leading-none" title="2nd Place">🥈</span>`;
+          rowAccent = 'bg-zinc-100/60 hover:bg-zinc-100 border-l-4 border-zinc-400';
+        } else if (rankNum === 3) {
+          rankDisplay = `<span class="text-lg sm:text-xl leading-none" title="3rd Place">🥉</span>`;
+          rowAccent = 'bg-orange-50/50 hover:bg-orange-50 border-l-4 border-orange-400';
+        }
+
+        let diffBadge = `<span class="text-[11px] text-zinc-400">—</span>`;
+        if (item.diffSec !== null) {
+          const absStr = formatVariance(item.absDiffSec);
+          if (item.diffSec < 0) {
+            diffBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-extrabold font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">-${absStr}</span>`;
+          } else if (item.diffSec === 0) {
+            diffBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-extrabold font-mono bg-emerald-50 text-emerald-700 border border-emerald-200">0:00</span>`;
+          } else {
+            diffBadge = `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold font-mono bg-amber-50 text-amber-800 border border-amber-200">+${absStr}</span>`;
           }
         }
 
-        const safeName = String(entry.name || 'Runner').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const safeName = String(item.name || 'Runner').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const distBadgeLabel = item.distKm === 10 ? '10 km' : '4.9 km';
 
-        return `
-          <tr class="hover:bg-[#F8F9FA] transition">
-            <td class="py-3.5 px-4 sm:px-6 font-bold text-[#18181B]">${safeName}</td>
-            <td class="py-3.5 px-3 text-center">
-              <span class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-zinc-100 text-[#18181B]">${entry.distance}</span>
+        rowsHtml += `
+          <tr class="${rowAccent} transition">
+            <td class="py-3 pl-3 pr-1.5 sm:px-5 text-center whitespace-nowrap">${rankDisplay}</td>
+            <td class="py-3 px-2 sm:px-4">
+              <div class="font-bold text-[#1A1A1A] leading-tight">${safeName}</div>
+              <span class="sm:hidden inline-block mt-1 px-1.5 py-0.5 rounded bg-zinc-100 text-[10px] font-extrabold text-zinc-600">${distBadgeLabel}</span>
             </td>
-            <td class="py-3.5 px-3 text-center">
-              <div class="font-mono font-bold text-[#18181B]">${goalSec ? formatDuration(goalSec) : '—'}</div>
-              <div class="text-[11px] font-mono text-zinc-500">${goalPaceStr}</div>
+            <td class="py-3 px-2 text-center hidden sm:table-cell whitespace-nowrap">
+              <span class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-zinc-100 text-[#1A1A1A]">${distBadgeLabel}</span>
             </td>
-            <td class="py-3.5 px-3 text-center">${actualCell}</td>
-            <td class="py-3.5 px-4 sm:px-6 text-right whitespace-nowrap">${varianceCell}</td>
+            <td class="py-3 px-1.5 sm:px-3 text-center whitespace-nowrap">
+              <div class="font-mono font-bold text-zinc-700">${item.goalSec ? formatDuration(item.goalSec) : '—'}</div>
+              <div class="text-[10px] sm:text-[11px] font-mono text-zinc-400">${item.goalPace ? formatPaceMMSS(item.goalPace) + '/km' : '—'}</div>
+            </td>
+            <td class="py-3 px-1.5 sm:px-3 text-center whitespace-nowrap">
+              <div class="font-mono font-black text-[#1A1A1A]">${formatDuration(item.actualSec)}</div>
+              <div class="text-[10px] sm:text-[11px] font-mono font-semibold text-[#DC1E26]">${formatPaceMMSS(item.actualPace)}/km</div>
+            </td>
+            <td class="py-3 pl-1.5 pr-3 sm:px-5 text-right whitespace-nowrap">${diffBadge}</td>
           </tr>
         `;
-      }).join('');
+      });
+
+      // Divider row if there are both finishers and pending runners
+      if (finishers.length > 0 && pending.length > 0) {
+        rowsHtml += `
+          <tr class="bg-[#F8F9FA]">
+            <td colspan="6" class="py-2 px-4 sm:px-6 text-[10px] font-extrabold uppercase tracking-wider text-zinc-400">
+              Awaiting Actual Race Time (${pending.length})
+            </td>
+          </tr>
+        `;
+      }
+
+      pending.forEach(item => {
+        const safeName = String(item.name || 'Runner').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const distBadgeLabel = item.distKm === 10 ? '10 km' : '4.9 km';
+
+        rowsHtml += `
+          <tr class="hover:bg-[#F8F9FA] transition border-l-4 border-transparent">
+            <td class="py-3 pl-3 pr-1.5 sm:px-5 text-center font-mono font-bold text-zinc-300">—</td>
+            <td class="py-3 px-2 sm:px-4">
+              <div class="font-bold text-[#1A1A1A] leading-tight">${safeName}</div>
+              <span class="sm:hidden inline-block mt-1 px-1.5 py-0.5 rounded bg-zinc-100 text-[10px] font-extrabold text-zinc-600">${distBadgeLabel}</span>
+            </td>
+            <td class="py-3 px-2 text-center hidden sm:table-cell whitespace-nowrap">
+              <span class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-zinc-100 text-[#1A1A1A]">${distBadgeLabel}</span>
+            </td>
+            <td class="py-3 px-1.5 sm:px-3 text-center whitespace-nowrap">
+              <div class="font-mono font-bold text-[#1A1A1A]">${item.goalSec ? formatDuration(item.goalSec) : '—'}</div>
+              <div class="text-[10px] sm:text-[11px] font-mono text-zinc-400">${item.goalPace ? formatPaceMMSS(item.goalPace) + '/km' : '—'}</div>
+            </td>
+            <td class="py-3 px-1.5 sm:px-3 text-center whitespace-nowrap">
+              <button onclick="openActualModal('${item.id}')" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#FEF2F2] hover:bg-[#DC1E26] text-[#DC1E26] hover:text-white border border-[#FECACA] font-bold text-[11px] sm:text-xs transition inline-flex items-center gap-1">
+                <i class="fa-solid fa-stopwatch"></i> <span>Log Actual</span>
+              </button>
+            </td>
+            <td class="py-3 pl-1.5 pr-3 sm:px-5 text-right whitespace-nowrap">
+              <span class="text-[11px] font-semibold text-zinc-400">Pending</span>
+            </td>
+          </tr>
+        `;
+      });
+
+      tbody.innerHTML = rowsHtml;
     }
 
     // =========================================================================
@@ -1353,7 +1494,7 @@
 
       state.editingRunnerId = entry.id;
       document.getElementById('modal-runner-name').textContent = entry.name;
-      const goalSec = parseHHMMSS(entry.goalTime) || 3600;
+      const goalSec = parseTimeToSeconds(entry.goalTime) || 3600;
       document.getElementById('modal-runner-meta').textContent = `${entry.distance} • Goal: ${formatDuration(goalSec)}`;
 
       document.getElementById('actual-hr').value = Math.floor(goalSec / 3600);
@@ -1388,32 +1529,21 @@
       btn.textContent = 'Saving...';
 
       try {
-        if (GOOGLE_SCRIPT_URL) {
-          await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({
-              action: 'log_actual',
-              id: state.editingRunnerId,
-              actualTime: actualTimeStr
-            })
-          });
-          await loadLeaderboard();
-        } else {
-          const entries = getLocalEntries();
-          const idx = entries.findIndex(item => String(item.id) === String(state.editingRunnerId));
-          if (idx !== -1) {
-            entries[idx].actualTime = actualTimeStr;
-            saveLocalEntries(entries);
-            state.leaderboardEntries = entries;
-            renderLeaderboard();
-          }
-        }
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({
+            action: 'log_actual',
+            id: state.editingRunnerId,
+            actualTime: actualTimeStr
+          })
+        });
+        await loadLeaderboard();
         closeActualModal();
-        showToast('Actual finish time logged!');
+        showToast('Actual finish time logged & ranked!');
       } catch (err) {
         console.error(err);
-        showToast('Could not save actual time.');
+        showToast('Could not save actual time. Try again.');
       } finally {
         btn.disabled = false;
         btn.textContent = 'Save Actual Time';
@@ -1433,7 +1563,7 @@
     // Initialize on load
     window.onload = function () {
       recalculateAndRender();
-      autoFillGoalFromCalculator();
+      autoFillGoalFromCalculator(true);
       loadLeaderboard();
     };
   </script>
