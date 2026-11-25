@@ -9,7 +9,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&display=swap" rel="stylesheet">
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
@@ -18,22 +18,20 @@
       theme: {
         extend: {
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            sans: ['Nunito', 'sans-serif'],
+            display: ['Fredoka', 'sans-serif'],
             mono: ['JetBrains Mono', 'monospace'],
           },
           colors: {
-            crimson: {
-              50: '#FEF2F2',
-              100: '#FEE2E2',
-              200: '#FECACA',
-              500: '#DC1E26',
-              600: '#DC1E26',
-              700: '#B31218',
-              800: '#991B1B',
-              900: '#7F1D1D',
-            },
-            charcoal: '#1A1A1A',
-            softgray: '#F8F9FA',
+            /* Runners Playground colours (old crimson names kept so nothing breaks) */
+            crimson: { 50: '#FFF0F4', 100: '#FFE3EC', 200: '#FFC2D4', 500: '#D12A5C', 600: '#D12A5C', 700: '#B0204F', 800: '#8E1A40', 900: '#6E1432' },
+            charcoal: '#0F2236',
+            softgray: '#F3FBFA',
+            zinc: {50: '#F3F7FB', 100: '#E4EEF6', 200: '#CFE3F2', 300: '#A9C3D9', 400: '#7F9AB5', 500: '#6A86A2', 600: '#3D5670', 700: '#2B4560', 800: '#1B3049', 900: '#12243A', 950: '#0A1828'},
+            emerald: {50: '#E6FAF8', 100: '#C4F3EE', 200: '#93E8DF', 300: '#5FDBCF', 400: '#2EC4B6', 500: '#22B0A3', 600: '#0B9488', 700: '#0B7A70', 800: '#0A5F58', 900: '#084A44', 950: '#052E2A'},
+            amber: {50: '#FFFBEA', 100: '#FFF6D1', 200: '#FFEC9E', 300: '#FFE372', 400: '#FFD23F', 500: '#FFD23F', 600: '#E6B800', 700: '#8A6A00', 800: '#6B5200', 900: '#4D3D00', 950: '#2E2400'},
+            red: {50: '#FFF0F4', 100: '#FFE3EC', 200: '#FFC2D4', 300: '#FF94B2', 400: '#FF5C8A', 500: '#F0406F', 600: '#D12A5C', 700: '#B0204F', 800: '#8E1A40', 900: '#6E1432', 950: '#4A0C21'},
+            orange: {50: '#FFF0F4', 100: '#FFE3EC', 200: '#FFC2D4', 300: '#FF94B2', 400: '#FF5C8A', 500: '#F0406F', 600: '#D12A5C', 700: '#B0204F', 800: '#8E1A40', 900: '#6E1432', 950: '#4A0C21'},
           }
         }
       }
@@ -55,7 +53,7 @@
       width: 100%;
       height: 10px;
       cursor: pointer;
-      background: linear-gradient(90deg, #B31218 0%, #DC1E26 55%, #F87171 100%);
+      background: linear-gradient(90deg, #2EC4B6 0%, #FFD23F 55%, #FF5C8A 100%);
       border-radius: 999px;
     }
     input[type=range]::-webkit-slider-thumb {
@@ -63,8 +61,8 @@
       width: 26px;
       border-radius: 50%;
       background: #FFFFFF;
-      border: 4px solid #DC1E26;
-      box-shadow: 0 3px 10px rgba(220, 30, 38, 0.35);
+      border: 4px solid #0F2236;
+      box-shadow: 0 3px 10px rgba(15, 34, 54, 0.35);
       cursor: pointer;
       -webkit-appearance: none;
       margin-top: -8px;
@@ -72,13 +70,13 @@
     }
     input[type=range]::-webkit-slider-thumb:hover {
       transform: scale(1.12);
-      box-shadow: 0 4px 14px rgba(220, 30, 38, 0.5);
+      box-shadow: 0 4px 14px rgba(15, 34, 54, 0.5);
     }
     input[type=range]::-moz-range-track {
       width: 100%;
       height: 10px;
       cursor: pointer;
-      background: linear-gradient(90deg, #B31218 0%, #DC1E26 55%, #F87171 100%);
+      background: linear-gradient(90deg, #2EC4B6 0%, #FFD23F 55%, #FF5C8A 100%);
       border-radius: 999px;
     }
     input[type=range]::-moz-range-thumb {
@@ -86,8 +84,8 @@
       width: 26px;
       border-radius: 50%;
       background: #FFFFFF;
-      border: 4px solid #DC1E26;
-      box-shadow: 0 3px 10px rgba(220, 30, 38, 0.35);
+      border: 4px solid #0F2236;
+      box-shadow: 0 3px 10px rgba(15, 34, 54, 0.35);
       cursor: pointer;
     }
 
@@ -105,15 +103,50 @@
         top: 0;
         width: 100%;
         box-shadow: none !important;
-        border: 2px dashed #1A1A1A !important;
+        border: 2px dashed #0F2236 !important;
       }
     }
   </style>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style id="trp-shared">
+  /* Runners Playground shared top menu */
+  .trp-nav{background:#fff;border-bottom:3px solid #0F2236;font-family:'Nunito',sans-serif;color:#0F2236;position:relative;z-index:45}
+  .trp-nav .in{max-width:1240px;margin:0 auto;padding:8px 14px;display:flex;align-items:center;gap:12px;justify-content:space-between}
+  .trp-logo{display:flex;align-items:center;gap:8px;text-decoration:none;color:#0F2236;font:700 17px/1 'Fredoka',sans-serif;white-space:nowrap}
+  .trp-logo b{color:#D12A5C;font-weight:700}
+  .trp-links{display:flex;gap:4px;overflow-x:auto;white-space:nowrap;scrollbar-width:none;font-weight:800;font-size:14px}
+  .trp-links::-webkit-scrollbar{display:none}
+  .trp-links a{color:#0F2236;text-decoration:none;padding:9px 12px;border-radius:999px;min-height:40px;display:inline-flex;align-items:center}
+  .trp-links a:hover{background:#E6FAF8}
+  .trp-links a[aria-current=page]{background:#FFD23F;border:2px solid #0F2236;padding:7px 10px}
+  .trp-nav a:focus-visible{outline:3px solid #FF5C8A;outline-offset:2px}
+  @media(max-width:560px){.trp-logo span{display:none}.trp-nav .in{gap:8px}}
+  h1,h2,h3,.font-display{font-family:'Fredoka','Nunito',sans-serif !important;letter-spacing:0 !important}
+</style>
+  <style id="trp-mataffin">
+    /* Playground look: chunky outlines and sticker shadows on the main cards */
+    main .rounded-3xl.bg-white, main section > .rounded-2xl.bg-white{border:3px solid #0F2236 !important;box-shadow:6px 6px 0 #0F2236 !important}
+    header.bg-gradient-to-br{background:#2EC4B6 !important;color:#0F2236 !important;border-bottom:3px solid #0F2236}
+    header.bg-gradient-to-br .text-white, header.bg-gradient-to-br h1, header.bg-gradient-to-br p, header.bg-gradient-to-br a, header.bg-gradient-to-br strong{color:#0F2236 !important}
+    header.bg-gradient-to-br .border-white\/25, header.bg-gradient-to-br .border-white\/20{border-color:#0F2236 !important}
+    header.bg-gradient-to-br .bg-white\/15, header.bg-gradient-to-br .bg-white\/20{background:#fff !important}
+    header.bg-gradient-to-br [class*="bg-[#B0204F]"]{background:#0F2236 !important}
+    header.bg-gradient-to-br #btn-dist-10k, header.bg-gradient-to-br #btn-dist-5k{color:#fff !important}
+    header.bg-gradient-to-br #btn-dist-10k.bg-white, header.bg-gradient-to-br #btn-dist-5k.bg-white{color:#0F2236 !important;background:#FFD23F !important}
+    header.bg-gradient-to-br .absolute.inset-0{display:none}
+    button.rounded-xl, button.rounded-2xl{font-weight:800}
+  </style>
 </head>
-<body class="bg-[#F8F9FA] text-[#1A1A1A] font-sans antialiased selection:bg-[#DC1E26] selection:text-white">
+<body class="bg-[#F3FBFA] text-[#0F2236] font-sans antialiased selection:bg-[#D12A5C] selection:text-white">
+  <!-- Runners Playground shared menu: change HOME in this link list if your main site moves -->
+  <nav class="trp-nav" aria-label="Runners Playground"><div class="in">
+    <a class="trp-logo" href="https://yollieblom.github.io/runners-playground/" aria-label="The Runners Playground home"><svg width="34" height="34" viewBox="0 0 44 44" aria-hidden="true"><rect x="3" y="9" width="38" height="26" rx="13" fill="none" stroke="#2EC4B6" stroke-width="5"/><rect x="11" y="16" width="22" height="12" rx="6" fill="#FFD23F" stroke="#0F2236" stroke-width="2.5"/><circle cx="34" cy="10" r="5" fill="#FF5C8A" stroke="#0F2236" stroke-width="2.5"/></svg><span>The Runners <b>Playground</b></span></a>
+    <div class="trp-links"><a href="https://yollieblom.github.io/runners-playground/">Home</a><a href="https://yollieblom.github.io/runners-playground/#calculators">Calculators</a><a href="https://yollieblom.github.io/runners-playground/#diary">Run Diary</a><a href="https://yollieblom.github.io/race-pacer/">Race Pacers</a><a href="https://yollieblom.github.io/Mataffin-pace/" aria-current="page">Mataffin</a><a href="https://yollieblom.github.io/kaapsehoop-4-in-1-marathon/">Kaapsehoop</a><a href="https://yollieblom.github.io/runners-playground/#challenges">Challenges</a></div>
+  </div></nav>
+
 
   <!-- Top Crimson Race Header -->
-  <header class="bg-gradient-to-br from-[#B31218] via-[#DC1E26] to-[#B31218] text-white relative overflow-hidden shadow-md">
+  <header class="bg-gradient-to-br from-[#B0204F] via-[#D12A5C] to-[#B0204F] text-white relative overflow-hidden shadow-md">
     <!-- Subtle Athletic Diagonal Stripe Overlay -->
     <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: repeating-linear-gradient(60deg, transparent, transparent 24px, #FFFFFF 24px, #FFFFFF 32px);"></div>
 
@@ -132,11 +165,11 @@
         </div>
 
         <!-- Distance Selector Toggle -->
-        <div class="bg-[#B31218]/80 p-1.5 rounded-2xl border border-white/25 flex items-center self-start md:self-center shadow-inner">
-          <button id="btn-dist-10k" onclick="setDistance('10k')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-[#DC1E26] shadow-md">
+        <div class="bg-[#B0204F]/80 p-1.5 rounded-2xl border border-white/25 flex items-center self-start md:self-center shadow-inner">
+          <button id="btn-dist-10k" onclick="setDistance('10k')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-[#D12A5C] shadow-md">
             <i class="fa-solid fa-route"></i>
             <span>10 km</span>
-            <span class="text-[11px] bg-[#FEE2E2] text-[#B31218] px-1.5 py-0.5 rounded font-mono font-bold">06:30</span>
+            <span class="text-[11px] bg-[#FFE3EC] text-[#B0204F] px-1.5 py-0.5 rounded font-mono font-bold">06:30</span>
           </button>
           <button id="btn-dist-5k" onclick="setDistance('5k')" class="px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-white hover:bg-white/10">
             <i class="fa-solid fa-bolt"></i>
@@ -154,7 +187,7 @@
         <a href="#section-goal" class="px-3 py-1.5 rounded-xl bg-white/15 hover:bg-white/25 transition flex items-center gap-1.5">
           <i class="fa-solid fa-bullseye"></i> 2. Lock In Goal
         </a>
-        <a href="#section-leaderboard" class="px-3 py-1.5 rounded-xl bg-white text-[#DC1E26] hover:bg-red-50 transition flex items-center gap-1.5 shadow-sm">
+        <a href="#section-leaderboard" class="px-3 py-1.5 rounded-xl bg-white text-[#D12A5C] hover:bg-red-50 transition flex items-center gap-1.5 shadow-sm">
           <i class="fa-solid fa-trophy"></i> 3. Live Leaderboard
         </a>
       </div>
@@ -165,16 +198,16 @@
   <main class="max-w-6xl mx-auto px-3.5 sm:px-6 py-6 sm:py-8 space-y-8">
 
     <!-- 5km Official 4.9km vs 5.0km Watch Sub-toggle -->
-    <div id="subtoggle-5k-bar" class="hidden bg-white border-l-4 border-[#DC1E26] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm border border-zinc-200">
-      <div class="flex items-start sm:items-center gap-2.5 text-[#1A1A1A] text-xs sm:text-sm">
-        <i class="fa-solid fa-circle-info text-[#DC1E26] text-base mt-0.5 sm:mt-0"></i>
+    <div id="subtoggle-5k-bar" class="hidden bg-white border-l-4 border-[#D12A5C] rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 shadow-sm border border-zinc-200">
+      <div class="flex items-start sm:items-center gap-2.5 text-[#0F2236] text-xs sm:text-sm">
+        <i class="fa-solid fa-circle-info text-[#D12A5C] text-base mt-0.5 sm:mt-0"></i>
         <span><strong>5 km Route Measurement:</strong> The official course measures <strong>4.9 km</strong>, or toggle to <strong>5.0 km</strong> to match a full GPS watch distance.</span>
       </div>
-      <div class="flex items-center gap-1 bg-[#F8F9FA] p-1 rounded-xl border border-zinc-200 self-start sm:self-center shrink-0">
-        <button id="btn-exact-49" onclick="set5kExact(4.9)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition">
+      <div class="flex items-center gap-1 bg-[#F3FBFA] p-1 rounded-xl border border-zinc-200 self-start sm:self-center shrink-0">
+        <button id="btn-exact-49" onclick="set5kExact(4.9)" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#D12A5C] text-white shadow-sm transition">
           4.9 km (Official)
         </button>
-        <button id="btn-exact-50" onclick="set5kExact(5.0)" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition">
+        <button id="btn-exact-50" onclick="set5kExact(5.0)" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition">
           5.0 km (Watch)
         </button>
       </div>
@@ -189,22 +222,22 @@
       <div class="bg-white rounded-3xl shadow-sm border border-zinc-200 p-5 sm:p-7">
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 pb-5 border-b border-zinc-100">
           <div>
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Section 1 • Pace &amp; Effort Estimator</span>
-            <h2 class="text-xl sm:text-2xl font-black text-[#1A1A1A] mt-0.5">Choose Your Own Pace or Finish Time</h2>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#D12A5C]">Section 1 • Pace &amp; Effort Estimator</span>
+            <h2 class="text-xl sm:text-2xl font-black text-[#0F2236] mt-0.5">Choose Your Own Pace or Finish Time</h2>
             <p class="text-xs sm:text-sm text-zinc-500">Adjust either your average pace or target finish time—both stay synced and adjust splits for elevation &amp; orchard dirt.</p>
           </div>
 
           <!-- Pacing Strategy Selector -->
           <div class="flex flex-col sm:flex-row sm:items-center gap-2">
             <span class="text-xs font-bold text-zinc-500 uppercase tracking-wider">Strategy:</span>
-            <div class="inline-flex bg-[#F8F9FA] p-1 rounded-xl border border-zinc-200">
-              <button id="strat-effort" onclick="setStrategy('effort')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition">
+            <div class="inline-flex bg-[#F3FBFA] p-1 rounded-xl border border-zinc-200">
+              <button id="strat-effort" onclick="setStrategy('effort')" class="px-3 py-1.5 rounded-lg text-xs font-bold bg-[#D12A5C] text-white shadow-sm transition">
                 <i class="fa-solid fa-heart-pulse mr-1"></i> Even Effort
               </button>
-              <button id="strat-negative" onclick="setStrategy('negative')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition">
+              <button id="strat-negative" onclick="setStrategy('negative')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition">
                 <i class="fa-solid fa-arrow-trend-up mr-1"></i> Negative Split
               </button>
-              <button id="strat-flat" onclick="setStrategy('flat')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition">
+              <button id="strat-flat" onclick="setStrategy('flat')" class="px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition">
                 <i class="fa-solid fa-equals mr-1"></i> Flat Splits
               </button>
             </div>
@@ -213,30 +246,30 @@
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-6 items-center">
           <!-- Target Pace Input Box -->
-          <div class="lg:col-span-4 bg-[#F8F9FA] border border-zinc-200 rounded-2xl p-4 sm:p-5">
+          <div class="lg:col-span-4 bg-[#F3FBFA] border border-zinc-200 rounded-2xl p-4 sm:p-5">
             <div class="flex items-center justify-between mb-2.5">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#1A1A1A] flex items-center gap-1.5">
-                <i class="fa-solid fa-gauge-high text-[#DC1E26]"></i> Target Pace
+              <span class="text-xs font-bold uppercase tracking-wider text-[#0F2236] flex items-center gap-1.5">
+                <i class="fa-solid fa-gauge-high text-[#D12A5C]"></i> Target Pace
               </span>
-              <span class="text-[11px] font-bold text-[#B31218] bg-[#FEE2E2] px-2 py-0.5 rounded-md">min / km</span>
+              <span class="text-[11px] font-bold text-[#B0204F] bg-[#FFE3EC] px-2 py-0.5 rounded-md">min / km</span>
             </div>
 
             <div class="flex items-center justify-between gap-2 my-1">
-              <button onclick="nudgePace(-5)" class="w-10 h-10 rounded-xl bg-white border border-zinc-200 hover:border-[#DC1E26] hover:text-[#DC1E26] font-bold text-zinc-700 shadow-sm active:scale-95 transition flex items-center justify-center" title="Faster by 5 sec/km">
+              <button onclick="nudgePace(-5)" class="w-10 h-10 rounded-xl bg-white border border-zinc-200 hover:border-[#D12A5C] hover:text-[#D12A5C] font-bold text-zinc-700 shadow-sm active:scale-95 transition flex items-center justify-center" title="Faster by 5 sec/km">
                 -5s
               </button>
               <div class="flex items-center gap-1 font-mono">
-                <input id="input-pace-min" type="number" inputmode="numeric" min="3" max="10" value="6" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-zinc-300 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" aria-label="Pace Minutes" />
+                <input id="input-pace-min" type="number" inputmode="numeric" min="3" max="10" value="6" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-zinc-300 rounded-xl py-1.5 text-[#0F2236] focus:outline-none focus:border-[#D12A5C] focus:ring-2 focus:ring-red-100" aria-label="Pace Minutes" />
                 <span class="text-2xl font-extrabold text-zinc-400">:</span>
-                <input id="input-pace-sec" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-zinc-300 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" aria-label="Pace Seconds" />
+                <input id="input-pace-sec" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualPaceInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-zinc-300 rounded-xl py-1.5 text-[#0F2236] focus:outline-none focus:border-[#D12A5C] focus:ring-2 focus:ring-red-100" aria-label="Pace Seconds" />
               </div>
-              <button onclick="nudgePace(5)" class="w-10 h-10 rounded-xl bg-white border border-zinc-200 hover:border-[#DC1E26] hover:text-[#DC1E26] font-bold text-zinc-700 shadow-sm active:scale-95 transition flex items-center justify-center" title="Slower by 5 sec/km">
+              <button onclick="nudgePace(5)" class="w-10 h-10 rounded-xl bg-white border border-zinc-200 hover:border-[#D12A5C] hover:text-[#D12A5C] font-bold text-zinc-700 shadow-sm active:scale-95 transition flex items-center justify-center" title="Slower by 5 sec/km">
                 +5s
               </button>
             </div>
 
             <p class="text-[11px] text-zinc-500 text-center mt-2">
-              Avg Speed: <strong id="display-speed-kmh" class="text-[#1A1A1A] font-mono">10.0 km/h</strong>
+              Avg Speed: <strong id="display-speed-kmh" class="text-[#0F2236] font-mono">10.0 km/h</strong>
             </p>
           </div>
 
@@ -244,7 +277,7 @@
           <div class="lg:col-span-4 px-2 flex flex-col justify-center">
             <div class="flex justify-between text-xs font-bold text-zinc-500 mb-2">
               <span class="font-mono">03:30/km</span>
-              <span class="text-[#DC1E26]">Slide to Adjust</span>
+              <span class="text-[#D12A5C]">Slide to Adjust</span>
               <span class="font-mono">10:00/km</span>
             </div>
             <input id="pace-slider" type="range" min="210" max="600" step="1" value="360" oninput="onSliderInput(this.value)" aria-label="Target Pace Slider" />
@@ -256,43 +289,43 @@
               <span>10:00</span>
             </div>
             <div class="flex items-center justify-center gap-2 mt-3">
-              <button onclick="nudgePace(-1)" class="px-3 py-1 text-xs font-bold rounded-lg bg-[#F8F9FA] border border-zinc-200 hover:border-[#DC1E26] hover:text-[#DC1E26] text-zinc-700 transition">
+              <button onclick="nudgePace(-1)" class="px-3 py-1 text-xs font-bold rounded-lg bg-[#F3FBFA] border border-zinc-200 hover:border-[#D12A5C] hover:text-[#D12A5C] text-zinc-700 transition">
                 -1 sec/km
               </button>
-              <button onclick="nudgePace(1)" class="px-3 py-1 text-xs font-bold rounded-lg bg-[#F8F9FA] border border-zinc-200 hover:border-[#DC1E26] hover:text-[#DC1E26] text-zinc-700 transition">
+              <button onclick="nudgePace(1)" class="px-3 py-1 text-xs font-bold rounded-lg bg-[#F3FBFA] border border-zinc-200 hover:border-[#D12A5C] hover:text-[#D12A5C] text-zinc-700 transition">
                 +1 sec/km
               </button>
             </div>
           </div>
 
           <!-- Target Finish Time Input Box -->
-          <div class="lg:col-span-4 bg-[#FEF2F2] border border-[#FECACA] rounded-2xl p-4 sm:p-5">
+          <div class="lg:col-span-4 bg-[#FFF0F4] border border-[#FFC2D4] rounded-2xl p-4 sm:p-5">
             <div class="flex items-center justify-between mb-2.5">
-              <span class="text-xs font-bold uppercase tracking-wider text-[#B31218] flex items-center gap-1.5">
+              <span class="text-xs font-bold uppercase tracking-wider text-[#B0204F] flex items-center gap-1.5">
                 <i class="fa-solid fa-flag-checkered"></i> Target Finish Time
               </span>
-              <span id="badge-distance-label" class="text-[11px] font-bold text-white bg-[#DC1E26] px-2 py-0.5 rounded-md">10.0 km</span>
+              <span id="badge-distance-label" class="text-[11px] font-bold text-white bg-[#D12A5C] px-2 py-0.5 rounded-md">10.0 km</span>
             </div>
 
             <div class="flex items-center justify-center gap-1 font-mono my-1">
               <div class="flex flex-col items-center">
-                <input id="input-time-hr" type="number" inputmode="numeric" min="0" max="3" value="1" onchange="onManualTimeInput()" class="w-14 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Hours" />
+                <input id="input-time-hr" type="number" inputmode="numeric" min="0" max="3" value="1" onchange="onManualTimeInput()" class="w-14 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#0F2236] focus:outline-none focus:border-[#D12A5C]" aria-label="Finish Hours" />
                 <span class="text-[10px] font-sans font-bold text-zinc-500 uppercase mt-0.5">hr</span>
               </div>
               <span class="text-2xl font-extrabold text-zinc-400 -mt-4">:</span>
               <div class="flex flex-col items-center">
-                <input id="input-time-min" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Minutes" />
+                <input id="input-time-min" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#0F2236] focus:outline-none focus:border-[#D12A5C]" aria-label="Finish Minutes" />
                 <span class="text-[10px] font-sans font-bold text-zinc-500 uppercase mt-0.5">min</span>
               </div>
               <span class="text-2xl font-extrabold text-zinc-400 -mt-4">:</span>
               <div class="flex flex-col items-center">
-                <input id="input-time-sec" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#1A1A1A] focus:outline-none focus:border-[#DC1E26]" aria-label="Finish Seconds" />
+                <input id="input-time-sec" type="number" inputmode="numeric" min="0" max="59" value="00" onchange="onManualTimeInput()" class="w-16 text-center text-2xl sm:text-3xl font-extrabold bg-white border border-red-200 rounded-xl py-1.5 text-[#0F2236] focus:outline-none focus:border-[#D12A5C]" aria-label="Finish Seconds" />
                 <span class="text-[10px] font-sans font-bold text-zinc-500 uppercase mt-0.5">sec</span>
               </div>
             </div>
 
             <p class="text-[11px] text-zinc-600 text-center mt-1">
-              Finish Clock: <strong id="display-tod-finish" class="text-[#1A1A1A] font-mono">07:30:00 AM</strong>
+              Finish Clock: <strong id="display-tod-finish" class="text-[#0F2236] font-mono">07:30:00 AM</strong>
             </p>
           </div>
         </div>
@@ -302,28 +335,28 @@
       <div class="bg-white rounded-3xl shadow-sm border border-zinc-200 p-5 sm:p-7">
         <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
           <div>
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Course Elevation &amp; Surface Profile</span>
-            <h3 class="text-lg sm:text-xl font-black text-[#1A1A1A]">Mbombela Stadium (~660 m) ↔ Crocodile River (~620 m)</h3>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#D12A5C]">Course Elevation &amp; Surface Profile</span>
+            <h3 class="text-lg sm:text-xl font-black text-[#0F2236]">Mbombela Stadium (~660 m) ↔ Crocodile River (~620 m)</h3>
           </div>
           <div class="flex flex-wrap items-center gap-2.5 text-xs font-bold">
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-100 text-[#1A1A1A]">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#1A1A1A]"></span> Tarmac Road
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-zinc-100 text-[#0F2236]">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#0F2236]"></span> Tarmac Road
             </span>
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FEF2F2] text-[#B31218] border border-[#FECACA]">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#DC1E26]"></span> Compact Dirt (+3–5s/km effort)
+            <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#FFF0F4] text-[#B0204F] border border-[#FFC2D4]">
+              <span class="w-2.5 h-2.5 rounded-full bg-[#D12A5C]"></span> Compact Dirt (+3–5s/km effort)
             </span>
           </div>
         </div>
 
         <!-- Active Segment Inspection Banner -->
-        <div class="bg-[#1A1A1A] text-white rounded-2xl p-3.5 sm:px-5 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs sm:text-sm">
+        <div class="bg-[#0F2236] text-white rounded-2xl p-3.5 sm:px-5 mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs sm:text-sm">
           <div class="flex items-center gap-2.5">
-            <span id="banner-km-pill" class="px-2.5 py-1 rounded-lg bg-[#DC1E26] text-white font-mono font-bold text-xs shrink-0">KM 4</span>
+            <span id="banner-km-pill" class="px-2.5 py-1 rounded-lg bg-[#D12A5C] text-white font-mono font-bold text-xs shrink-0">KM 4</span>
             <span id="banner-seg-title" class="font-bold text-white">Dropping Toward Crocodile River</span>
             <span id="banner-seg-elev" class="text-zinc-300 font-mono text-xs hidden md:inline">• -22m (654m → 632m)</span>
           </div>
           <div class="flex items-center gap-4 font-mono text-xs">
-            <span>Split: <strong id="banner-seg-pace" class="text-[#F87171] text-sm">05:50/km</strong></span>
+            <span>Split: <strong id="banner-seg-pace" class="text-[#FF5C8A] text-sm">05:50/km</strong></span>
             <span>Elapsed: <strong id="banner-seg-cum" class="text-white text-sm">23:54</strong></span>
             <span>RPE: <strong id="banner-seg-rpe" class="text-amber-300">7/10</strong></span>
           </div>
@@ -341,15 +374,15 @@
       <div class="bg-white rounded-3xl shadow-sm border border-zinc-200 overflow-hidden">
         <div class="p-5 sm:p-7 border-b border-zinc-100 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Kilometer-by-Kilometer Breakdown</span>
-            <h3 class="text-lg sm:text-xl font-black text-[#1A1A1A]">Your Personalized Race Splits</h3>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-[#D12A5C]">Kilometer-by-Kilometer Breakdown</span>
+            <h3 class="text-lg sm:text-xl font-black text-[#0F2236]">Your Personalized Race Splits</h3>
           </div>
           <div class="flex flex-wrap items-center gap-2.5">
-            <button onclick="copyPlanToClipboard()" class="px-4 py-2.5 rounded-xl bg-[#F8F9FA] hover:bg-zinc-100 text-[#1A1A1A] font-bold text-xs sm:text-sm border border-zinc-200 transition flex items-center gap-2">
+            <button onclick="copyPlanToClipboard()" class="px-4 py-2.5 rounded-xl bg-[#F3FBFA] hover:bg-zinc-100 text-[#0F2236] font-bold text-xs sm:text-sm border border-zinc-200 transition flex items-center gap-2">
               <i class="fa-brands fa-whatsapp text-emerald-600 text-base"></i>
               <span>Copy Splits for WhatsApp</span>
             </button>
-            <button onclick="toggleWristBandModal(true)" class="px-4 py-2.5 rounded-xl bg-[#DC1E26] hover:bg-[#B31218] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center gap-2">
+            <button onclick="toggleWristBandModal(true)" class="px-4 py-2.5 rounded-xl bg-[#D12A5C] hover:bg-[#B0204F] text-white font-bold text-xs sm:text-sm shadow-sm transition flex items-center gap-2">
               <i class="fa-solid fa-print"></i>
               <span>Print Wrist Pace Band</span>
             </button>
@@ -359,7 +392,7 @@
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
-              <tr class="bg-[#F8F9FA] border-b border-zinc-200 text-[11px] font-extrabold uppercase tracking-wider text-zinc-500">
+              <tr class="bg-[#F3FBFA] border-b border-zinc-200 text-[11px] font-extrabold uppercase tracking-wider text-zinc-500">
                 <th class="py-3.5 px-4 sm:px-6">km</th>
                 <th class="py-3.5 px-3">Segment &amp; Surface</th>
                 <th class="py-3.5 px-3 text-center">RPE</th>
@@ -379,16 +412,16 @@
     <!-- ===================================================================== -->
     <!-- SECTION 2: LOCK IN YOUR GOAL & 1-TAP SATURDAY 13:00 REMINDER          -->
     <!-- ===================================================================== -->
-    <section id="section-goal" class="bg-white rounded-3xl shadow-sm border-2 border-[#DC1E26]/20 p-5 sm:p-8 relative overflow-hidden">
-      <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#B31218] via-[#DC1E26] to-[#B31218]"></div>
+    <section id="section-goal" class="bg-white rounded-3xl shadow-sm border-2 border-[#D12A5C]/20 p-5 sm:p-8 relative overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-[#B0204F] via-[#D12A5C] to-[#B0204F]"></div>
 
       <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3 mb-6">
         <div>
-          <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Section 2 • Commit to Your Target</span>
-          <h2 class="text-xl sm:text-2xl font-black text-[#1A1A1A] mt-0.5">Lock In Your Goal &amp; Join the Leaderboard</h2>
+          <span class="text-xs font-extrabold uppercase tracking-wider text-[#D12A5C]">Section 2 • Commit to Your Target</span>
+          <h2 class="text-xl sm:text-2xl font-black text-[#0F2236] mt-0.5">Lock In Your Goal &amp; Join the Leaderboard</h2>
           <p class="text-xs sm:text-sm text-zinc-500">Save your target time now, then log your actual finish time Saturday afternoon to see where you rank!</p>
         </div>
-        <button type="button" onclick="autoFillGoalFromCalculator()" class="self-start md:self-center px-3.5 py-2 rounded-xl bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#B31218] border border-[#FECACA] text-xs font-bold transition flex items-center gap-1.5 shrink-0">
+        <button type="button" onclick="autoFillGoalFromCalculator()" class="self-start md:self-center px-3.5 py-2 rounded-xl bg-[#FFF0F4] hover:bg-[#FFE3EC] text-[#B0204F] border border-[#FFC2D4] text-xs font-bold transition flex items-center gap-1.5 shrink-0">
           <i class="fa-solid fa-wand-magic-sparkles"></i> Sync from Calculator Above
         </button>
       </div>
@@ -397,13 +430,13 @@
         <!-- Runner Name -->
         <div class="md:col-span-4">
           <label for="goal-name" class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">Runner Name</label>
-          <input id="goal-name" type="text" required maxlength="40" placeholder="e.g. Sarah M." class="w-full px-4 py-3 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-sm font-semibold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26] focus:ring-2 focus:ring-red-100" />
+          <input id="goal-name" type="text" required maxlength="40" placeholder="e.g. Sarah M." class="w-full px-4 py-3 rounded-xl bg-[#F3FBFA] border border-zinc-300 text-sm font-semibold text-[#0F2236] focus:outline-none focus:bg-white focus:border-[#D12A5C] focus:ring-2 focus:ring-red-100" />
         </div>
 
         <!-- Distance -->
         <div class="md:col-span-3">
           <label for="goal-distance" class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">Distance</label>
-          <select id="goal-distance" class="w-full px-4 py-3 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-sm font-semibold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]">
+          <select id="goal-distance" class="w-full px-4 py-3 rounded-xl bg-[#F3FBFA] border border-zinc-300 text-sm font-semibold text-[#0F2236] focus:outline-none focus:bg-white focus:border-[#D12A5C]">
             <option value="10 km">10 km (06:30 Start)</option>
             <option value="4.9 km">4.9 km (Official 5 km)</option>
           </select>
@@ -413,30 +446,30 @@
         <div class="md:col-span-3">
           <label class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">Goal Time (HH:MM:SS)</label>
           <div class="flex items-center gap-1 font-mono">
-            <input id="goal-hr" type="number" inputmode="numeric" min="0" max="3" value="1" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Hours" />
+            <input id="goal-hr" type="number" inputmode="numeric" min="0" max="3" value="1" required class="w-full text-center py-2.5 rounded-xl bg-[#F3FBFA] border border-zinc-300 text-base font-extrabold text-[#0F2236] focus:outline-none focus:bg-white focus:border-[#D12A5C]" aria-label="Goal Hours" />
             <span class="font-bold text-zinc-400">:</span>
-            <input id="goal-min" type="number" inputmode="numeric" min="0" max="59" value="00" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Minutes" />
+            <input id="goal-min" type="number" inputmode="numeric" min="0" max="59" value="00" required class="w-full text-center py-2.5 rounded-xl bg-[#F3FBFA] border border-zinc-300 text-base font-extrabold text-[#0F2236] focus:outline-none focus:bg-white focus:border-[#D12A5C]" aria-label="Goal Minutes" />
             <span class="font-bold text-zinc-400">:</span>
-            <input id="goal-sec" type="number" inputmode="numeric" min="0" max="59" value="00" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-base font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Goal Seconds" />
+            <input id="goal-sec" type="number" inputmode="numeric" min="0" max="59" value="00" required class="w-full text-center py-2.5 rounded-xl bg-[#F3FBFA] border border-zinc-300 text-base font-extrabold text-[#0F2236] focus:outline-none focus:bg-white focus:border-[#D12A5C]" aria-label="Goal Seconds" />
           </div>
         </div>
 
         <!-- Submit Button -->
         <div class="md:col-span-2">
-          <button id="btn-submit-goal" type="submit" class="w-full py-3 px-4 rounded-xl bg-[#DC1E26] hover:bg-[#B31218] text-white font-extrabold text-sm shadow-md active:scale-[0.98] transition flex items-center justify-center gap-1.5">
+          <button id="btn-submit-goal" type="submit" class="w-full py-3 px-4 rounded-xl bg-[#D12A5C] hover:bg-[#B0204F] text-white font-extrabold text-sm shadow-md active:scale-[0.98] transition flex items-center justify-center gap-1.5">
             <i class="fa-solid fa-plus-circle"></i> Add My Goal
           </button>
         </div>
       </form>
 
       <!-- Celebratory Confirmation & 1-Tap Reminder Box (Revealed after Submit) -->
-      <div id="goal-confirmation-box" class="hidden mt-6 p-5 rounded-2xl bg-[#FEF2F2] border-2 border-[#DC1E26] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+      <div id="goal-confirmation-box" class="hidden mt-6 p-5 rounded-2xl bg-[#FFF0F4] border-2 border-[#D12A5C] flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div class="flex items-start gap-3">
-          <div class="w-10 h-10 rounded-full bg-[#DC1E26] text-white flex items-center justify-center shrink-0 text-lg shadow-sm">
+          <div class="w-10 h-10 rounded-full bg-[#D12A5C] text-white flex items-center justify-center shrink-0 text-lg shadow-sm">
             <i class="fa-solid fa-fire"></i>
           </div>
           <div>
-            <h4 class="font-black text-[#1A1A1A] text-base">Goal Locked In! You're on the Leaderboard.</h4>
+            <h4 class="font-black text-[#0F2236] text-base">Goal Locked In! You're on the Leaderboard.</h4>
             <p id="goal-confirm-summary" class="text-xs sm:text-sm text-zinc-700 mt-0.5">
               Set a quick 1-tap reminder below to log your actual finish time Saturday at 13:00!
             </p>
@@ -444,11 +477,11 @@
         </div>
 
         <div class="flex flex-wrap items-center gap-2.5 shrink-0">
-          <button type="button" onclick="downloadSaturdayReminderICS()" class="px-4 py-2.5 rounded-xl bg-[#DC1E26] hover:bg-[#B31218] text-white font-extrabold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
+          <button type="button" onclick="downloadSaturdayReminderICS()" class="px-4 py-2.5 rounded-xl bg-[#D12A5C] hover:bg-[#B0204F] text-white font-extrabold text-xs sm:text-sm shadow-md transition flex items-center gap-2">
             <span>📅 Remind Me Saturday at 13:00</span>
           </button>
-          <a id="gcal-reminder-link" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-white hover:bg-zinc-50 text-[#1A1A1A] border border-zinc-300 font-bold text-xs sm:text-sm transition flex items-center gap-2">
-            <i class="fa-brands fa-google text-[#DC1E26]"></i> Add to Google Calendar
+          <a id="gcal-reminder-link" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2.5 rounded-xl bg-white hover:bg-zinc-50 text-[#0F2236] border border-zinc-300 font-bold text-xs sm:text-sm transition flex items-center gap-2">
+            <i class="fa-brands fa-google text-[#D12A5C]"></i> Add to Google Calendar
           </a>
         </div>
       </div>
@@ -463,21 +496,21 @@
         <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3.5">
           <div>
             <div class="flex flex-wrap items-center gap-2">
-              <span class="text-xs font-extrabold uppercase tracking-wider text-[#DC1E26]">Section 3 • Goal vs. Actual</span>
+              <span class="text-xs font-extrabold uppercase tracking-wider text-[#D12A5C]">Section 3 • Goal vs. Actual</span>
               <span id="storage-mode-badge" class="inline-flex items-center gap-1.5 text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span> Live
               </span>
             </div>
-            <h2 class="text-xl sm:text-2xl font-black text-[#1A1A1A] mt-0.5">Live Mataffin Home Run Leaderboard</h2>
+            <h2 class="text-xl sm:text-2xl font-black text-[#0F2236] mt-0.5">Live Mataffin Home Run Leaderboard</h2>
           </div>
 
           <!-- Action Buttons -->
           <div class="flex flex-wrap items-center gap-2">
-            <button onclick="downloadSaturdayReminderICS()" class="px-3.5 py-2 rounded-xl bg-[#FEF2F2] hover:bg-[#FEE2E2] text-[#B31218] border border-[#FECACA] font-bold text-xs transition flex items-center gap-1.5">
+            <button onclick="downloadSaturdayReminderICS()" class="px-3.5 py-2 rounded-xl bg-[#FFF0F4] hover:bg-[#FFE3EC] text-[#B0204F] border border-[#FFC2D4] font-bold text-xs transition flex items-center gap-1.5">
               <span>📅 Saturday 13:00 Reminder</span>
             </button>
-            <button id="btn-refresh-lb" onclick="loadLeaderboard()" class="px-3.5 py-2 rounded-xl bg-[#F8F9FA] hover:bg-zinc-100 text-[#1A1A1A] border border-zinc-200 font-bold text-xs transition flex items-center gap-1.5">
-              <i id="refresh-icon" class="fa-solid fa-rotate-right text-[#DC1E26]"></i> Refresh Leaderboard
+            <button id="btn-refresh-lb" onclick="loadLeaderboard()" class="px-3.5 py-2 rounded-xl bg-[#F3FBFA] hover:bg-zinc-100 text-[#0F2236] border border-zinc-200 font-bold text-xs transition flex items-center gap-1.5">
+              <i id="refresh-icon" class="fa-solid fa-rotate-right text-[#D12A5C]"></i> Refresh Leaderboard
             </button>
           </div>
         </div>
@@ -486,31 +519,31 @@
         <div class="mt-5 flex flex-col md:flex-row md:items-center md:justify-between gap-3.5">
           <!-- Distance Filters -->
           <div class="flex flex-wrap items-center gap-1.5">
-            <button id="filter-all" onclick="setLeaderboardFilter('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-[#DC1E26] text-white shadow-sm transition">
+            <button id="filter-all" onclick="setLeaderboardFilter('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-[#D12A5C] text-white shadow-sm transition">
               All Distances
             </button>
-            <button id="filter-10k" onclick="setLeaderboardFilter('10k')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#1A1A1A] border border-zinc-200 transition">
+            <button id="filter-10k" onclick="setLeaderboardFilter('10k')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F3FBFA] text-zinc-600 hover:text-[#0F2236] border border-zinc-200 transition">
               10 km
             </button>
-            <button id="filter-5k" onclick="setLeaderboardFilter('5k')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#1A1A1A] border border-zinc-200 transition">
+            <button id="filter-5k" onclick="setLeaderboardFilter('5k')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F3FBFA] text-zinc-600 hover:text-[#0F2236] border border-zinc-200 transition">
               5 km (4.9 km)
             </button>
           </div>
 
           <!-- Ranking Mode Toggle (Segmented Control) -->
-          <div class="inline-flex bg-[#F8F9FA] p-1 rounded-2xl border border-zinc-200 self-start md:self-auto">
-            <button id="rank-mode-fastest" onclick="setRankingMode('fastest')" class="px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#1A1A1A] text-white shadow-sm transition flex items-center gap-1.5">
+          <div class="inline-flex bg-[#F3FBFA] p-1 rounded-2xl border border-zinc-200 self-start md:self-auto">
+            <button id="rank-mode-fastest" onclick="setRankingMode('fastest')" class="px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#0F2236] text-white shadow-sm transition flex items-center gap-1.5">
               <span>🏆 Fastest Actual</span>
             </button>
-            <button id="rank-mode-pacing" onclick="setRankingMode('pacing')" class="px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition flex items-center gap-1.5">
+            <button id="rank-mode-pacing" onclick="setRankingMode('pacing')" class="px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition flex items-center gap-1.5">
               <span>🎯 Pacing Champion</span>
             </button>
           </div>
         </div>
 
         <!-- Dynamic 1-Line Ranking Rule Helper Note -->
-        <div class="mt-3 flex items-center gap-2 text-xs text-zinc-500 bg-[#F8F9FA] px-3.5 py-2 rounded-xl border border-zinc-100">
-          <i class="fa-solid fa-circle-info text-[#DC1E26] shrink-0"></i>
+        <div class="mt-3 flex items-center gap-2 text-xs text-zinc-500 bg-[#F3FBFA] px-3.5 py-2 rounded-xl border border-zinc-100">
+          <i class="fa-solid fa-circle-info text-[#D12A5C] shrink-0"></i>
           <span id="ranking-helper-note">Ranked by fastest actual pace (/km) across distances. Pending runners appear below.</span>
         </div>
       </div>
@@ -519,7 +552,7 @@
       <div class="overflow-x-auto">
         <table class="w-full text-left border-collapse">
           <thead>
-            <tr class="bg-[#F8F9FA] border-b border-zinc-200 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-zinc-500">
+            <tr class="bg-[#F3FBFA] border-b border-zinc-200 text-[10px] sm:text-[11px] font-extrabold uppercase tracking-wider text-zinc-500">
               <th class="py-3 pl-3 pr-1.5 sm:px-5 text-center w-12 sm:w-16">Rank</th>
               <th class="py-3 px-2 sm:px-4">Runner</th>
               <th class="py-3 px-2 text-center hidden sm:table-cell">Dist</th>
@@ -549,8 +582,8 @@
     <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl border border-zinc-200">
       <div class="flex items-center justify-between pb-3 border-b border-zinc-100">
         <div>
-          <span class="text-[11px] font-extrabold uppercase tracking-wider text-[#DC1E26]">Post-Race Check-In</span>
-          <h4 class="font-black text-[#1A1A1A] text-lg">Log Actual Finish Time</h4>
+          <span class="text-[11px] font-extrabold uppercase tracking-wider text-[#D12A5C]">Post-Race Check-In</span>
+          <h4 class="font-black text-[#0F2236] text-lg">Log Actual Finish Time</h4>
         </div>
         <button onclick="closeActualModal()" class="w-8 h-8 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 flex items-center justify-center">
           <i class="fa-solid fa-xmark"></i>
@@ -558,8 +591,8 @@
       </div>
 
       <form onsubmit="handleActualSubmit(event)" class="mt-4 space-y-4">
-        <div class="bg-[#F8F9FA] rounded-xl p-3 border border-zinc-200 text-xs">
-          <div class="font-bold text-[#1A1A1A] text-sm" id="modal-runner-name">Runner Name</div>
+        <div class="bg-[#F3FBFA] rounded-xl p-3 border border-zinc-200 text-xs">
+          <div class="font-bold text-[#0F2236] text-sm" id="modal-runner-name">Runner Name</div>
           <div class="text-zinc-500 mt-0.5" id="modal-runner-meta">10 km • Goal: 1:00:00</div>
         </div>
 
@@ -567,17 +600,17 @@
           <label class="block text-xs font-bold uppercase tracking-wider text-zinc-600 mb-1.5">Actual Finish Time (HH:MM:SS)</label>
           <div class="flex items-center gap-1.5 font-mono">
             <div class="flex-1 flex flex-col items-center">
-              <input id="actual-hr" type="number" inputmode="numeric" min="0" max="3" value="0" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Hours" />
+              <input id="actual-hr" type="number" inputmode="numeric" min="0" max="3" value="0" required class="w-full text-center py-2.5 rounded-xl bg-[#F3FBFA] border border-zinc-300 text-lg font-extrabold text-[#0F2236] focus:outline-none focus:bg-white focus:border-[#D12A5C]" aria-label="Actual Hours" />
               <span class="text-[10px] font-sans font-bold text-zinc-400 uppercase mt-1">hr</span>
             </div>
             <span class="font-bold text-zinc-400 -mt-4">:</span>
             <div class="flex-1 flex flex-col items-center">
-              <input id="actual-min" type="number" inputmode="numeric" min="0" max="59" value="58" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Minutes" />
+              <input id="actual-min" type="number" inputmode="numeric" min="0" max="59" value="58" required class="w-full text-center py-2.5 rounded-xl bg-[#F3FBFA] border border-zinc-300 text-lg font-extrabold text-[#0F2236] focus:outline-none focus:bg-white focus:border-[#D12A5C]" aria-label="Actual Minutes" />
               <span class="text-[10px] font-sans font-bold text-zinc-400 uppercase mt-1">min</span>
             </div>
             <span class="font-bold text-zinc-400 -mt-4">:</span>
             <div class="flex-1 flex flex-col items-center">
-              <input id="actual-sec" type="number" inputmode="numeric" min="0" max="59" value="30" required class="w-full text-center py-2.5 rounded-xl bg-[#F8F9FA] border border-zinc-300 text-lg font-extrabold text-[#1A1A1A] focus:outline-none focus:bg-white focus:border-[#DC1E26]" aria-label="Actual Seconds" />
+              <input id="actual-sec" type="number" inputmode="numeric" min="0" max="59" value="30" required class="w-full text-center py-2.5 rounded-xl bg-[#F3FBFA] border border-zinc-300 text-lg font-extrabold text-[#0F2236] focus:outline-none focus:bg-white focus:border-[#D12A5C]" aria-label="Actual Seconds" />
               <span class="text-[10px] font-sans font-bold text-zinc-400 uppercase mt-1">sec</span>
             </div>
           </div>
@@ -587,7 +620,7 @@
           <button type="button" onclick="closeActualModal()" class="px-4 py-2.5 rounded-xl text-xs font-bold text-zinc-600 hover:bg-zinc-100">
             Cancel
           </button>
-          <button id="btn-save-actual" type="submit" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-[#DC1E26] hover:bg-[#B31218] text-white shadow-sm">
+          <button id="btn-save-actual" type="submit" class="px-5 py-2.5 rounded-xl text-xs font-extrabold bg-[#D12A5C] hover:bg-[#B0204F] text-white shadow-sm">
             Save Actual Time
           </button>
         </div>
@@ -602,7 +635,7 @@
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-zinc-200 max-h-[90vh] flex flex-col">
       <div class="flex items-center justify-between pb-3 border-b border-zinc-100">
         <div>
-          <h4 class="font-black text-[#1A1A1A] text-lg">Printable Wrist Pace Band</h4>
+          <h4 class="font-black text-[#0F2236] text-lg">Printable Wrist Pace Band</h4>
           <p class="text-xs text-zinc-500">Cut along the dashed border and tape around your wrist</p>
         </div>
         <button onclick="toggleWristBandModal(false)" class="w-8 h-8 rounded-full bg-zinc-100 hover:bg-zinc-200 text-zinc-600 flex items-center justify-center">
@@ -611,10 +644,10 @@
       </div>
 
       <div class="overflow-y-auto my-4 flex-1 flex justify-center">
-        <div id="print-band-area" class="w-64 border-2 border-dashed border-zinc-400 p-3.5 rounded-xl bg-white text-[#1A1A1A] font-mono text-xs">
-          <div class="text-center border-b-2 border-[#DC1E26] pb-2 mb-2">
-            <div class="font-sans font-black text-sm uppercase tracking-tight text-[#1A1A1A]">Mataffin Home Run</div>
-            <div id="band-header-meta" class="text-[11px] font-bold text-[#DC1E26]">10.0 km • 1:00:00 (06:00/km)</div>
+        <div id="print-band-area" class="w-64 border-2 border-dashed border-zinc-400 p-3.5 rounded-xl bg-white text-[#0F2236] font-mono text-xs">
+          <div class="text-center border-b-2 border-[#D12A5C] pb-2 mb-2">
+            <div class="font-sans font-black text-sm uppercase tracking-tight text-[#0F2236]">Mataffin Home Run</div>
+            <div id="band-header-meta" class="text-[11px] font-bold text-[#D12A5C]">10.0 km • 1:00:00 (06:00/km)</div>
             <div id="band-header-strat" class="text-[10px] font-sans text-zinc-500">Even Effort (Terrain Adjusted)</div>
           </div>
           <table class="w-full text-left border-collapse">
@@ -636,7 +669,7 @@
         <button onclick="toggleWristBandModal(false)" class="px-4 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:bg-zinc-100">
           Close
         </button>
-        <button onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-[#DC1E26] hover:bg-[#B31218] text-white flex items-center gap-1.5">
+        <button onclick="window.print()" class="px-4 py-2 rounded-xl text-xs font-extrabold bg-[#D12A5C] hover:bg-[#B0204F] text-white flex items-center gap-1.5">
           <i class="fa-solid fa-print"></i> Print Band
         </button>
       </div>
@@ -644,8 +677,8 @@
   </div>
 
   <!-- Toast Notification -->
-  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden bg-[#1A1A1A] text-white px-4 py-3 rounded-2xl shadow-xl border-l-4 border-[#DC1E26] flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
-    <i class="fa-solid fa-circle-check text-[#DC1E26] text-base"></i>
+  <div id="toast-notification" class="fixed bottom-5 right-5 z-50 hidden bg-[#0F2236] text-white px-4 py-3 rounded-2xl shadow-xl border-l-4 border-[#D12A5C] flex items-center gap-2.5 text-xs sm:text-sm font-semibold">
+    <i class="fa-solid fa-circle-check text-[#D12A5C] text-base"></i>
     <span id="toast-message">Done!</span>
   </div>
 
@@ -804,12 +837,12 @@
       const subBar = document.getElementById('subtoggle-5k-bar');
 
       if (raceKey === '10k') {
-        btn10.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-[#DC1E26] shadow-md';
+        btn10.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-[#D12A5C] shadow-md';
         btn5.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-white hover:bg-white/10';
         subBar.classList.add('hidden');
         document.getElementById('goal-distance').value = '10 km';
       } else {
-        btn5.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-[#DC1E26] shadow-md';
+        btn5.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 bg-white text-[#D12A5C] shadow-md';
         btn10.className = 'px-4 sm:px-5 py-2.5 rounded-xl font-bold text-sm transition-all flex items-center gap-2 text-white hover:bg-white/10';
         subBar.classList.remove('hidden');
         document.getElementById('goal-distance').value = '4.9 km';
@@ -827,11 +860,11 @@
       const b49 = document.getElementById('btn-exact-49');
       const b50 = document.getElementById('btn-exact-50');
       if (distVal === 4.9) {
-        b49.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition';
-        b50.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition';
+        b49.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#D12A5C] text-white shadow-sm transition';
+        b50.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition';
       } else {
-        b50.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition';
-        b49.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition';
+        b50.className = 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#D12A5C] text-white shadow-sm transition';
+        b49.className = 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition';
       }
       recalculateAndRender();
       autoFillGoalFromCalculator(true);
@@ -842,8 +875,8 @@
       ['effort', 'negative', 'flat'].forEach(id => {
         const el = document.getElementById(`strat-${id}`);
         el.className = id === strat
-          ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#DC1E26] text-white shadow-sm transition'
-          : 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition';
+          ? 'px-3 py-1.5 rounded-lg text-xs font-bold bg-[#D12A5C] text-white shadow-sm transition'
+          : 'px-3 py-1.5 rounded-lg text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition';
       });
       recalculateAndRender();
     }
@@ -957,8 +990,8 @@
       let html = `
         <defs>
           <linearGradient id="crimsonGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#DC1E26" stop-opacity="0.28"/>
-            <stop offset="100%" stop-color="#DC1E26" stop-opacity="0.02"/>
+            <stop offset="0%" stop-color="#D12A5C" stop-opacity="0.28"/>
+            <stop offset="100%" stop-color="#D12A5C" stop-opacity="0.02"/>
           </linearGradient>
         </defs>
       `;
@@ -966,7 +999,7 @@
       [620, 640, 660].forEach(alt => {
         const y = getY(alt);
         html += `
-          <line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#E4E4E7" stroke-dasharray="4 4" stroke-width="1" />
+          <line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#CFE3F2" stroke-dasharray="4 4" stroke-width="1" />
           <text x="${padL - 8}" y="${y + 4}" text-anchor="end" class="text-[11px] fill-zinc-400 font-mono">${alt}m</text>
         `;
       });
@@ -978,7 +1011,7 @@
 
       for (let i = 0; i < splits.length; i++) {
         const p1 = points[i], p2 = points[i + 1], s = splits[i];
-        const strokeColor = s.surfaceType === 'tar' ? '#1A1A1A' : '#DC1E26';
+        const strokeColor = s.surfaceType === 'tar' ? '#0F2236' : '#D12A5C';
         html += `<line x1="${getX(p1.km)}" y1="${getY(p1.elev)}" x2="${getX(p2.km)}" y2="${getY(p2.elev)}" stroke="${strokeColor}" stroke-width="4" stroke-linecap="round" />`;
       }
 
@@ -987,8 +1020,8 @@
       if (turnPt) {
         const tx = getX(turnPt.km);
         html += `
-          <line x1="${tx}" y1="${padT}" x2="${tx}" y2="${padT + plotH}" stroke="#1A1A1A" stroke-dasharray="3 3" stroke-width="1.5" />
-          <rect x="${tx - 54}" y="${padT - 8}" width="108" height="18" rx="6" fill="#1A1A1A" />
+          <line x1="${tx}" y1="${padT}" x2="${tx}" y2="${padT + plotH}" stroke="#0F2236" stroke-dasharray="3 3" stroke-width="1.5" />
+          <rect x="${tx - 54}" y="${padT - 8}" width="108" height="18" rx="6" fill="#0F2236" />
           <text x="${tx}" y="${padT + 4}" text-anchor="middle" class="text-[10px] fill-white font-bold">RIVER TURNAROUND</text>
         `;
       }
@@ -997,17 +1030,17 @@
         const pt = points[i], s = pt.split;
         const cx = getX(pt.km), cy = getY(pt.elev);
         const isActive = (i - 1) === state.activeChartIdx;
-        const nodeColor = s.surfaceType === 'tar' ? '#1A1A1A' : '#DC1E26';
+        const nodeColor = s.surfaceType === 'tar' ? '#0F2236' : '#D12A5C';
 
         html += `
-          <text x="${cx}" y="${H - 12}" text-anchor="middle" class="text-[11px] font-mono ${isActive ? 'fill-[#DC1E26] font-extrabold' : 'fill-zinc-500 font-semibold'}">
+          <text x="${cx}" y="${H - 12}" text-anchor="middle" class="text-[11px] font-mono ${isActive ? 'fill-[#D12A5C] font-extrabold' : 'fill-zinc-500 font-semibold'}">
             km ${s.kmLabel}
           </text>
           <g class="cursor-pointer" onmouseenter="selectChartSegment(${i - 1})" onclick="selectChartSegment(${i - 1})">
             <circle cx="${cx}" cy="${cy}" r="18" fill="transparent" />
-            ${isActive ? `<circle cx="${cx}" cy="${cy}" r="11" fill="#DC1E26" fill-opacity="0.22" />` : ''}
-            <circle cx="${cx}" cy="${cy}" r="${isActive ? '7' : '5'}" fill="${isActive ? '#DC1E26' : '#FFFFFF'}" stroke="${nodeColor}" stroke-width="3" />
-            <text x="${cx}" y="${cy - 12}" text-anchor="middle" class="text-[10px] font-mono font-bold ${isActive ? 'fill-[#DC1E26]' : 'fill-zinc-600'}">
+            ${isActive ? `<circle cx="${cx}" cy="${cy}" r="11" fill="#D12A5C" fill-opacity="0.22" />` : ''}
+            <circle cx="${cx}" cy="${cy}" r="${isActive ? '7' : '5'}" fill="${isActive ? '#D12A5C' : '#FFFFFF'}" stroke="${nodeColor}" stroke-width="3" />
+            <text x="${cx}" y="${cy - 12}" text-anchor="middle" class="text-[10px] font-mono font-bold ${isActive ? 'fill-[#D12A5C]' : 'fill-zinc-600'}">
               ${formatPaceMMSS(s.effectivePaceSec)}
             </text>
           </g>
@@ -1043,30 +1076,30 @@
 
       state.calculatedSplits.forEach((s, idx) => {
         const surfBadge = s.surfaceType === 'tar'
-          ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-zinc-100 text-[#1A1A1A]">Tarmac</span>`
-          : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-[#FEF2F2] text-[#B31218] border border-[#FECACA]">${s.surface}</span>`;
+          ? `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-zinc-100 text-[#0F2236]">Tarmac</span>`
+          : `<span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-[#FFF0F4] text-[#B0204F] border border-[#FFC2D4]">${s.surface}</span>`;
 
         const isDown = s.elevDelta.startsWith('-');
-        const elevTag = `<span class="font-mono text-[11px] font-bold ${isDown ? 'text-emerald-600' : 'text-[#DC1E26]'}">${s.elevDelta}</span>`;
+        const elevTag = `<span class="font-mono text-[11px] font-bold ${isDown ? 'text-emerald-600' : 'text-[#D12A5C]'}">${s.elevDelta}</span>`;
 
         const diffRound = Math.round(s.paceDiffSec);
         const diffTag = diffRound < 0
           ? `<span class="text-[11px] text-emerald-600 font-mono font-bold">${diffRound}s</span>`
           : diffRound > 0
-            ? `<span class="text-[11px] text-[#DC1E26] font-mono font-bold">+${diffRound}s</span>`
+            ? `<span class="text-[11px] text-[#D12A5C] font-mono font-bold">+${diffRound}s</span>`
             : `<span class="text-[11px] text-zinc-400 font-mono">even</span>`;
 
         const isTurnaround = (state.raceKey === '10k' && idx === 4) || (state.raceKey === '5k' && idx === 2);
-        const rowBg = isTurnaround ? 'bg-[#FEF2F2]/60 hover:bg-[#FEF2F2]' : 'hover:bg-[#F8F9FA]';
+        const rowBg = isTurnaround ? 'bg-[#FFF0F4]/60 hover:bg-[#FFF0F4]' : 'hover:bg-[#F3FBFA]';
 
         rowsHtml += `
           <tr class="${rowBg} transition cursor-pointer" onclick="selectChartSegment(${idx})">
-            <td class="py-3.5 px-4 sm:px-6 font-mono font-black text-[#1A1A1A] whitespace-nowrap">
+            <td class="py-3.5 px-4 sm:px-6 font-mono font-black text-[#0F2236] whitespace-nowrap">
               km ${s.kmLabel}
-              ${isTurnaround ? `<span class="block text-[10px] font-sans font-extrabold text-[#DC1E26] uppercase">Turnaround</span>` : ''}
+              ${isTurnaround ? `<span class="block text-[10px] font-sans font-extrabold text-[#D12A5C] uppercase">Turnaround</span>` : ''}
             </td>
             <td class="py-3.5 px-3">
-              <div class="font-bold text-[#1A1A1A] text-xs sm:text-sm">${s.title}</div>
+              <div class="font-bold text-[#0F2236] text-xs sm:text-sm">${s.title}</div>
               <div class="mt-1 flex flex-wrap items-center gap-2">
                 ${surfBadge}
                 ${elevTag}
@@ -1074,16 +1107,16 @@
               </div>
             </td>
             <td class="py-3.5 px-3 text-center whitespace-nowrap">
-              <div class="font-mono text-xs font-bold text-[#1A1A1A]">${s.rpe}</div>
+              <div class="font-mono text-xs font-bold text-[#0F2236]">${s.rpe}</div>
               <div class="w-12 h-1.5 bg-zinc-200 rounded-full mx-auto mt-1 overflow-hidden">
-                <div class="bg-[#DC1E26] h-full rounded-full" style="width: ${s.rpeNum * 10}%"></div>
+                <div class="bg-[#D12A5C] h-full rounded-full" style="width: ${s.rpeNum * 10}%"></div>
               </div>
             </td>
             <td class="py-3.5 px-3 text-center whitespace-nowrap">
-              <div class="font-mono font-extrabold text-[#1A1A1A] text-sm sm:text-base">${formatPaceMMSS(s.effectivePaceSec)}<span class="text-xs font-normal text-zinc-400">/km</span></div>
+              <div class="font-mono font-extrabold text-[#0F2236] text-sm sm:text-base">${formatPaceMMSS(s.effectivePaceSec)}<span class="text-xs font-normal text-zinc-400">/km</span></div>
               <div>${diffTag}</div>
             </td>
-            <td class="py-3.5 px-3 text-center whitespace-nowrap font-mono font-black text-[#B31218] text-sm sm:text-base">
+            <td class="py-3.5 px-3 text-center whitespace-nowrap font-mono font-black text-[#B0204F] text-sm sm:text-base">
               ${formatDuration(s.cumulativeSec)}
             </td>
             <td class="py-3.5 px-4 sm:px-6 text-xs text-zinc-600 hidden lg:table-cell max-w-xs">
@@ -1278,8 +1311,8 @@
       ['all', '10k', '5k'].forEach(k => {
         const btn = document.getElementById(`filter-${k}`);
         btn.className = k === filterKey
-          ? 'px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-[#DC1E26] text-white shadow-sm transition'
-          : 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F8F9FA] text-zinc-600 hover:text-[#1A1A1A] border border-zinc-200 transition';
+          ? 'px-3.5 py-1.5 rounded-xl text-xs font-extrabold bg-[#D12A5C] text-white shadow-sm transition'
+          : 'px-3.5 py-1.5 rounded-xl text-xs font-bold bg-[#F3FBFA] text-zinc-600 hover:text-[#0F2236] border border-zinc-200 transition';
       });
       renderLeaderboard();
     }
@@ -1290,11 +1323,11 @@
       const btnPacing = document.getElementById('rank-mode-pacing');
 
       if (mode === 'fastest') {
-        btnFastest.className = 'px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#1A1A1A] text-white shadow-sm transition flex items-center gap-1.5';
-        btnPacing.className = 'px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition flex items-center gap-1.5';
+        btnFastest.className = 'px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#0F2236] text-white shadow-sm transition flex items-center gap-1.5';
+        btnPacing.className = 'px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition flex items-center gap-1.5';
       } else {
-        btnPacing.className = 'px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#DC1E26] text-white shadow-sm transition flex items-center gap-1.5';
-        btnFastest.className = 'px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#1A1A1A] transition flex items-center gap-1.5';
+        btnPacing.className = 'px-3.5 py-2 rounded-xl text-xs font-extrabold bg-[#D12A5C] text-white shadow-sm transition flex items-center gap-1.5';
+        btnFastest.className = 'px-3.5 py-2 rounded-xl text-xs font-bold text-zinc-600 hover:text-[#0F2236] transition flex items-center gap-1.5';
       }
       renderLeaderboard();
     }
@@ -1390,7 +1423,7 @@
       finishers.forEach((item, idx) => {
         const rankNum = idx + 1;
         let rankDisplay = `<span class="font-mono font-extrabold text-zinc-500 text-xs sm:text-sm">#${rankNum}</span>`;
-        let rowAccent = 'hover:bg-[#F8F9FA] border-l-4 border-transparent';
+        let rowAccent = 'hover:bg-[#F3FBFA] border-l-4 border-transparent';
 
         if (rankNum === 1) {
           rankDisplay = `<span class="text-lg sm:text-xl leading-none" title="1st Place">🥇</span>`;
@@ -1422,19 +1455,19 @@
           <tr class="${rowAccent} transition">
             <td class="py-3 pl-3 pr-1.5 sm:px-5 text-center whitespace-nowrap">${rankDisplay}</td>
             <td class="py-3 px-2 sm:px-4">
-              <div class="font-bold text-[#1A1A1A] leading-tight">${safeName}</div>
+              <div class="font-bold text-[#0F2236] leading-tight">${safeName}</div>
               <span class="sm:hidden inline-block mt-1 px-1.5 py-0.5 rounded bg-zinc-100 text-[10px] font-extrabold text-zinc-600">${distBadgeLabel}</span>
             </td>
             <td class="py-3 px-2 text-center hidden sm:table-cell whitespace-nowrap">
-              <span class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-zinc-100 text-[#1A1A1A]">${distBadgeLabel}</span>
+              <span class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-zinc-100 text-[#0F2236]">${distBadgeLabel}</span>
             </td>
             <td class="py-3 px-1.5 sm:px-3 text-center whitespace-nowrap">
               <div class="font-mono font-bold text-zinc-700">${item.goalSec ? formatDuration(item.goalSec) : '—'}</div>
               <div class="text-[10px] sm:text-[11px] font-mono text-zinc-400">${item.goalPace ? formatPaceMMSS(item.goalPace) + '/km' : '—'}</div>
             </td>
             <td class="py-3 px-1.5 sm:px-3 text-center whitespace-nowrap">
-              <div class="font-mono font-black text-[#1A1A1A]">${formatDuration(item.actualSec)}</div>
-              <div class="text-[10px] sm:text-[11px] font-mono font-semibold text-[#DC1E26]">${formatPaceMMSS(item.actualPace)}/km</div>
+              <div class="font-mono font-black text-[#0F2236]">${formatDuration(item.actualSec)}</div>
+              <div class="text-[10px] sm:text-[11px] font-mono font-semibold text-[#D12A5C]">${formatPaceMMSS(item.actualPace)}/km</div>
             </td>
             <td class="py-3 pl-1.5 pr-3 sm:px-5 text-right whitespace-nowrap">${diffBadge}</td>
           </tr>
@@ -1444,7 +1477,7 @@
       // Divider row if there are both finishers and pending runners
       if (finishers.length > 0 && pending.length > 0) {
         rowsHtml += `
-          <tr class="bg-[#F8F9FA]">
+          <tr class="bg-[#F3FBFA]">
             <td colspan="6" class="py-2 px-4 sm:px-6 text-[10px] font-extrabold uppercase tracking-wider text-zinc-400">
               Awaiting Actual Race Time (${pending.length})
             </td>
@@ -1457,21 +1490,21 @@
         const distBadgeLabel = item.distKm === 10 ? '10 km' : '4.9 km';
 
         rowsHtml += `
-          <tr class="hover:bg-[#F8F9FA] transition border-l-4 border-transparent">
+          <tr class="hover:bg-[#F3FBFA] transition border-l-4 border-transparent">
             <td class="py-3 pl-3 pr-1.5 sm:px-5 text-center font-mono font-bold text-zinc-300">—</td>
             <td class="py-3 px-2 sm:px-4">
-              <div class="font-bold text-[#1A1A1A] leading-tight">${safeName}</div>
+              <div class="font-bold text-[#0F2236] leading-tight">${safeName}</div>
               <span class="sm:hidden inline-block mt-1 px-1.5 py-0.5 rounded bg-zinc-100 text-[10px] font-extrabold text-zinc-600">${distBadgeLabel}</span>
             </td>
             <td class="py-3 px-2 text-center hidden sm:table-cell whitespace-nowrap">
-              <span class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-zinc-100 text-[#1A1A1A]">${distBadgeLabel}</span>
+              <span class="inline-flex px-2.5 py-0.5 rounded-lg text-xs font-extrabold bg-zinc-100 text-[#0F2236]">${distBadgeLabel}</span>
             </td>
             <td class="py-3 px-1.5 sm:px-3 text-center whitespace-nowrap">
-              <div class="font-mono font-bold text-[#1A1A1A]">${item.goalSec ? formatDuration(item.goalSec) : '—'}</div>
+              <div class="font-mono font-bold text-[#0F2236]">${item.goalSec ? formatDuration(item.goalSec) : '—'}</div>
               <div class="text-[10px] sm:text-[11px] font-mono text-zinc-400">${item.goalPace ? formatPaceMMSS(item.goalPace) + '/km' : '—'}</div>
             </td>
             <td class="py-3 px-1.5 sm:px-3 text-center whitespace-nowrap">
-              <button onclick="openActualModal('${item.id}')" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#FEF2F2] hover:bg-[#DC1E26] text-[#DC1E26] hover:text-white border border-[#FECACA] font-bold text-[11px] sm:text-xs transition inline-flex items-center gap-1">
+              <button onclick="openActualModal('${item.id}')" class="px-2.5 sm:px-3 py-1.5 rounded-xl bg-[#FFF0F4] hover:bg-[#D12A5C] text-[#D12A5C] hover:text-white border border-[#FFC2D4] font-bold text-[11px] sm:text-xs transition inline-flex items-center gap-1">
                 <i class="fa-solid fa-stopwatch"></i> <span>Log Actual</span>
               </button>
             </td>
@@ -1567,5 +1600,6 @@
       loadLeaderboard();
     };
   </script>
+<footer style="max-width:1240px;margin:0 auto;padding:16px 14px 28px;font:14px/1.5 Nunito,sans-serif;color:#6A86A2;text-align:center">© 2026 The Runners Playground. All rights reserved.</footer>
 </body>
 </html>
